@@ -1,9 +1,27 @@
 import os
+from pathlib import Path
 from typing import Optional
 
-from dotenv import load_dotenv
-
 from src.core.llm_provider import LLMProvider
+
+
+def load_env_file(path: str = ".env") -> None:
+    """
+    Load simple KEY=VALUE pairs from .env without requiring python-dotenv.
+    """
+    env_path = Path(path)
+    if not env_path.exists():
+        return
+
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key:
+            os.environ.setdefault(key, value)
 
 
 def _clean_env(value: Optional[str]) -> Optional[str]:
@@ -22,7 +40,7 @@ def create_llm_provider(
     """
     Build the configured LLM provider from environment variables.
     """
-    load_dotenv()
+    load_env_file()
 
     provider = (provider_name or os.getenv("DEFAULT_PROVIDER", "openai")).strip().lower()
     model = model_name or os.getenv("DEFAULT_MODEL")
@@ -69,4 +87,3 @@ def create_llm_provider(
 
     supported = "openai, openrouter, endpoint, google/gemini, local"
     raise ValueError(f"Unsupported DEFAULT_PROVIDER={provider!r}. Supported: {supported}")
-
