@@ -1,0 +1,2306 @@
+{
+  "generated_at": "2026-06-01 19:50:06",
+  "scenario_count": 22,
+  "results": [
+    {
+      "id": "T01",
+      "type": "simple_trip",
+      "difficulty": "easy",
+      "user_query": "Tìm chuyến HAN -> SGN ngày 2026-06-10 dưới 2 triệu.",
+      "required_tools": "search_trips",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ121; missing expected flight code VN207; missing expected number 1750000; missing expected number 1950000",
+      "chatbot_latency_ms": 9933,
+      "chatbot_answer": "Hiện tại tôi không có dữ liệu vé máy bay thực tế để tra cứu chuyến từ HAN đi SGN ngày 10/06/2026.  \nĐể biết giá vé dưới 2 triệu, bạn nên kiểm tra trực tiếp trên các website/ứng dụng của hãng như Vietnam Airlines, VietJet Air, Bamboo Airways hoặc các trang đặt vé uy tín.  \nVé cho ngày xa thường chưa mở bán hoặc có giá tham khảo; bạn có thể theo dõi các đợt khuyến mãi để có giá tốt.\n\nNếu cần hỗ trợ thêm về khách sạn, thời tiết hay di chuyển, hãy cho tôi biết nhé.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 6049,
+      "agent_loop_count": 1,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Các chuyến HAN -> SGN ngày 2026-06-10 dưới 2.000.000 VND/vé phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "max_price": 2000000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "passengers": 1,
+            "max_price": 2000000,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH203",
+                "departure_time": "15:00",
+                "arrival_time": "17:10",
+                "price": 2150000,
+                "seats_left": 8,
+                "baggage_fee": 120000
+              }
+            ]
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Các chuyến HAN -> SGN ngày 2026-06-10 dưới 2.000.000 VND/vé phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND."
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "type": "no_budget_match",
+      "difficulty": "edge",
+      "user_query": "Tìm chuyến HAN -> SGN ngày 2026-06-10 dưới 1 triệu.",
+      "required_tools": "search_trips",
+      "expected_error_code": "NO_MATCHING_TRIP",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "missing expected flight code VJ121; missing expected number 1000000",
+      "chatbot_latency_ms": 10098,
+      "chatbot_answer": "Hiện tại tôi không có dữ liệu vé máy bay thực tế nên không thể liệt kê chuyến HAN → SGN ngày 10/06/2026 giá dưới 1 triệu. Thông tin này bạn cần tự kiểm tra trên các trang đặt vé hoặc ứng dụng của hãng hàng không (Vietnam Airlines, Vietjet, Bamboo…) vì ngày bay còn xa, giá chưa được mở bán chính thức.\n\nBạn có cần hỗ trợ thêm về lịch trình hoặc các mục du lịch khác không?",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 5859,
+      "agent_loop_count": 1,
+      "agent_error_code": "NO_MATCHING_TRIP",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Không có chuyến HAN -> SGN ngày 2026-06-10 dưới 1.000.000 VND/vé phù hợp ngân sách. Chuyến rẻ nhất hiện có là VietJet VJ121 giá 1.750.000 VND.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "max_price": 1000000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "NO_MATCHING_TRIP",
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "passengers": 1,
+            "max_price": 1000000,
+            "results": [],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH203",
+                "departure_time": "15:00",
+                "arrival_time": "17:10",
+                "price": 2150000,
+                "seats_left": 8,
+                "baggage_fee": 120000
+              }
+            ],
+            "message": "Trips exist for this route/date, but none match the budget."
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Không có chuyến HAN -> SGN ngày 2026-06-10 dưới 1.000.000 VND/vé phù hợp ngân sách. Chuyến rẻ nhất hiện có là VietJet VJ121 giá 1.750.000 VND."
+        }
+      ]
+    },
+    {
+      "id": "T03",
+      "type": "multi_step_weather_outfit",
+      "difficulty": "hard",
+      "user_query": "Tôi muốn đi từ Hà Nội vào TP.HCM ngày 2026-06-10 cho 2 người dưới 2 triệu mỗi vé. Nếu trời mưa thì nên mang gì?",
+      "required_tools": "search_trips|get_weather|recommend_outfit",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ121; missing expected flight code VN207; missing expected number 2000000",
+      "chatbot_latency_ms": 10443,
+      "chatbot_answer": "Chào bạn, cảm ơn bạn đã chia sẻ kế hoạch.\n\nVề chuyến bay Hà Nội – TP.HCM ngày 10/06/2026 cho 2 người với ngân sách dưới 2 triệu/vé: tôi không có dữ liệu giá vé thực tế, nhưng mức này là khả thi nếu bạn đặt sớm vé của các hãng giá rẻ (VietJet, Bamboo, Vietravel Airlines…). Bạn nên kiểm tra trực tiếp trên website hoặc app đặt vé để có giá chính xác, vì giá có thể thay đổi theo thời gian và chương trình khuyến mãi.\n\nVề câu hỏi **“Nếu trời mưa thì nên mang gì?”** – Tháng 6 là mùa mưa ở TP.HCM, thường mưa rào vào chiều tối. Bạn nên mang theo:\n- **Ô/dù gấp gọn** (dễ bỏ túi).\n- **Áo mưa nhẹ** (loại tiện lợi, không chiếm nhiều diện tích).\n- **Giày dép chống nước** hoặc sandal dễ khô.\n- **Túi chống nước** hoặc bọc nilon để bảo vệ điện thoại, ví.\n- Một bộ đồ dự phòng nếu cần thay sau khi gặp mưa.\n\nChúc bạn có chuyến đi thuận lợi! Nếu cần thêm thông tin về điểm đến hay di chuyển nội đô TP.HCM, bạn cứ hỏi nhé.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 24780,
+      "agent_loop_count": 3,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|get_weather|recommend_outfit",
+      "agent_answer": "Các chuyến HAN -> SGN ngày 2026-06-10 dưới 2.000.000 VND/vé phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nThời tiết Ho Chi Minh City ngày 2026-06-10: rainy, nhiệt độ 27-32°C, xác suất mưa 70%.\n\nGợi ý đồ mang theo: light breathable clothes, foldable umbrella, light raincoat, quick-dry shoes.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "max_price": 2000000,
+            "passengers": 2
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "passengers": 2,
+            "max_price": 2000000,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH203",
+                "departure_time": "15:00",
+                "arrival_time": "17:10",
+                "price": 2150000,
+                "seats_left": 8,
+                "baggage_fee": 120000
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10",
+            "temp_high_c": 32,
+            "temp_low_c": 27,
+            "rain_probability": 0.7,
+            "condition": "rainy"
+          }
+        },
+        {
+          "step": 3,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "recommend_outfit",
+          "args": {
+            "temp_high_c": 32,
+            "rain_probability": 0.7,
+            "condition": "rainy"
+          },
+          "observation": {
+            "status": "OK",
+            "temp_high_c": 32,
+            "rain_probability": 0.7,
+            "condition": "rainy",
+            "recommended_items": [
+              "light breathable clothes",
+              "foldable umbrella",
+              "light raincoat",
+              "quick-dry shoes"
+            ],
+            "summary": "light breathable clothes, foldable umbrella, light raincoat, quick-dry shoes"
+          }
+        },
+        {
+          "step": 3,
+          "type": "final_answer",
+          "content": "Các chuyến HAN -> SGN ngày 2026-06-10 dưới 2.000.000 VND/vé phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nThời tiết Ho Chi Minh City ngày 2026-06-10: rainy, nhiệt độ 27-32°C, xác suất mưa 70%.\n\nGợi ý đồ mang theo: light breathable clothes, foldable umbrella, light raincoat, quick-dry shoes."
+        }
+      ]
+    },
+    {
+      "id": "T04",
+      "type": "total_cost",
+      "difficulty": "medium",
+      "user_query": "Đi HAN -> DAD ngày 2026-06-10 cho 3 người. Chọn vé rẻ nhất và tính tổng tiền vé cộng hành lý.",
+      "required_tools": "search_trips|calculate_total_cost",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ501; missing expected number 1200000",
+      "chatbot_latency_ms": 10139,
+      "chatbot_answer": "Rất tiếc, hiện tại tôi không có dữ liệu về giá vé máy bay, hành lý hay mã chuyến bay chính xác. Để chọn được vé rẻ nhất và tính tổng chi phí cho chặng HAN → DAD ngày 10/06/2026 (3 người), bạn cần kiểm tra trực tiếp trên:\n\n- Các website hãng hàng không (Vietnam Airlines, Vietjet Air, Bamboo Airways, …)\n- Các ứng dụng/nền tảng đặt vé (Traveloka, Vexere, Booking, …)\n\nKhi có giá cụ thể, tôi có thể hỗ trợ bạn ước tính thêm về chi phí khách sạn, di chuyển hoặc các hoạt động khác tại Đà Nẵng. Bạn đã có thông tin về nơi ở và lịch trình tham quan muốn tôi gợi ý không?",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 16201,
+      "agent_loop_count": 2,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|calculate_total_cost",
+      "agent_answer": "Các chuyến HAN -> DAD ngày 2026-06-10 phù hợp:\n- VietJet VJ501: 07:30-08:50. 1.200.000 VND/vé. còn 10 ghế. phí hành lý 150.000 VND.\n- Vietnam Airlines VN161: 11:00-12:20. 1.550.000 VND/vé. còn 4 ghế. phí hành lý 0 VND.\n\nTổng chi phí cơ bản: 4.050.000 VND (vé 3.600.000. hành lý 450.000. khách sạn 0. di chuyển 0. hoạt động 0).",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "max_price": null,
+            "passengers": 3
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "passengers": 3,
+            "max_price": null,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ501",
+                "departure_time": "07:30",
+                "arrival_time": "08:50",
+                "price": 1200000,
+                "seats_left": 10,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN161",
+                "departure_time": "11:00",
+                "arrival_time": "12:20",
+                "price": 1550000,
+                "seats_left": 4,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ501",
+                "departure_time": "07:30",
+                "arrival_time": "08:50",
+                "price": 1200000,
+                "seats_left": 10,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN161",
+                "departure_time": "11:00",
+                "arrival_time": "12:20",
+                "price": 1550000,
+                "seats_left": 4,
+                "baggage_fee": 0
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "calculate_total_cost",
+          "args": {
+            "ticket_price": 1200000,
+            "passengers": 3,
+            "baggage_fee": 150000,
+            "hotel_price_per_night": 0,
+            "nights": 0,
+            "rooms": 1,
+            "transport_cost": 0,
+            "activity_price": 0
+          },
+          "observation": {
+            "status": "OK",
+            "line_items": {
+              "ticket_total": 3600000,
+              "baggage_total": 450000,
+              "hotel_total": 0,
+              "transport_total": 0,
+              "activity_total": 0
+            },
+            "total": 4050000,
+            "currency": "VND"
+          }
+        },
+        {
+          "step": 2,
+          "type": "final_answer",
+          "content": "Các chuyến HAN -> DAD ngày 2026-06-10 phù hợp:\n- VietJet VJ501: 07:30-08:50. 1.200.000 VND/vé. còn 10 ghế. phí hành lý 150.000 VND.\n- Vietnam Airlines VN161: 11:00-12:20. 1.550.000 VND/vé. còn 4 ghế. phí hành lý 0 VND.\n\nTổng chi phí cơ bản: 4.050.000 VND (vé 3.600.000. hành lý 450.000. khách sạn 0. di chuyển 0. hoạt động 0)."
+        }
+      ]
+    },
+    {
+      "id": "T05",
+      "type": "not_enough_seats",
+      "difficulty": "edge",
+      "user_query": "Tìm chuyến HAN -> PQC ngày 2026-06-12 cho 2 người dưới 2 triệu mỗi vé.",
+      "required_tools": "search_trips",
+      "expected_error_code": "NOT_ENOUGH_SEATS",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "missing expected flight code VJ455; missing expected number 1850000",
+      "chatbot_latency_ms": 10714,
+      "chatbot_answer": "Xin chào, tôi là Vietnam Trip Planner (chế độ Baseline).\n\nHiện tại tôi không có dữ liệu chính xác về giá vé và chuyến bay thực tế cho ngày 2026-06-12. Để biết thông tin chuyến HAN → PQC (Hà Nội – Phú Quốc) dưới 2 triệu mỗi vé cho 2 người, bạn cần tự kiểm tra trên các trang đặt vé hoặc website hãng hàng không.\n\nTuy nhiên, tôi có thể lưu ý:\n- Tháng 6 là cao điểm hè, vé có thể tăng so với mức thấp nhất.\n- Các hãng bay nội địa như VietJet, Bamboo Airways, Vietravel Airlines thường có giá dưới 2 triệu nếu bạn đặt sớm và chọn gói tiết kiệm (chưa kèm hành lý ký gửi).\n- Kiểm tra cả vé một chiều và khứ hồi; nếu bạn chỉ cần một chiều, điều kiện giá cũng tương tự.\n\nNếu bạn cần tư vấn thêm về thời tiết, khách sạn, hoặc di chuyển tại Phú Quốc sau khi có thông tin vé, tôi sẵn sàng giúp.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 2777,
+      "agent_loop_count": 1,
+      "agent_error_code": "NOT_ENOUGH_SEATS",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Không có chuyến HAN -> PQC ngày 2026-06-12 dưới 2.000.000 VND/vé hợp lệ cho 2 người. Chuyến gần nhất là VietJet VJ455 giá 1.850.000 VND nhưng chỉ còn 1 ghế. không đủ 2 ghế.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "max_price": 2000000,
+            "passengers": 2
+          },
+          "observation": {
+            "status": "NOT_ENOUGH_SEATS",
+            "origin": "HAN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "passengers": 2,
+            "max_price": 2000000,
+            "results": [],
+            "seat_limited_options": [
+              {
+                "origin": "HAN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "VietJet",
+                "flight_no": "VJ455",
+                "departure_time": "05:50",
+                "arrival_time": "08:00",
+                "price": 1850000,
+                "seats_left": 1,
+                "baggage_fee": 200000
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "VietJet",
+                "flight_no": "VJ455",
+                "departure_time": "05:50",
+                "arrival_time": "08:00",
+                "price": 1850000,
+                "seats_left": 1,
+                "baggage_fee": 200000
+              },
+              {
+                "origin": "HAN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH1621",
+                "departure_time": "14:10",
+                "arrival_time": "16:20",
+                "price": 2450000,
+                "seats_left": 6,
+                "baggage_fee": 150000
+              }
+            ],
+            "message": "Matching trips exist, but they do not have enough seats."
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Không có chuyến HAN -> PQC ngày 2026-06-12 dưới 2.000.000 VND/vé hợp lệ cho 2 người. Chuyến gần nhất là VietJet VJ455 giá 1.850.000 VND nhưng chỉ còn 1 ghế. không đủ 2 ghế."
+        }
+      ]
+    },
+    {
+      "id": "T06",
+      "type": "weather_only",
+      "difficulty": "easy",
+      "user_query": "Thời tiết Đà Nẵng ngày 2026-06-10 như thế nào?",
+      "required_tools": "get_weather",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "basic checks passed",
+      "chatbot_latency_ms": 4798,
+      "chatbot_answer": "Xin lỗi, hiện tại tôi không có quyền truy cập vào dữ liệu thời tiết thực tế hoặc dự báo cho ngày cụ thể trong tương lai (2026-06-10). Thông tin này bạn nên kiểm tra trên các ứng dụng/hệ thống thời tiết uy tín gần ngày khởi hành.\n\nDựa vào kiến thức chung, Đà Nẵng tháng 6 đang là mùa hè, thời tiết thường nắng nóng, nhiệt độ trung bình 28–35°C, có thể xuất hiện mưa rào ngắn. Tuy nhiên, đây chỉ là suy luận, không phải dữ liệu chính xác.\n\nBạn có cần hỗ trợ thông tin khác cho chuyến đi không?",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 4663,
+      "agent_loop_count": 1,
+      "agent_error_code": "",
+      "agent_tools_called": "get_weather",
+      "agent_answer": "Thời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Đà Nẵng",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "date": "2026-06-10",
+            "temp_high_c": 34,
+            "temp_low_c": 28,
+            "rain_probability": 0.3,
+            "condition": "sunny"
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Thời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%."
+        }
+      ]
+    },
+    {
+      "id": "T07",
+      "type": "activity_recommendation",
+      "difficulty": "medium",
+      "user_query": "Nếu Phú Quốc mưa to ngày 2026-06-12 thì nên chọn hoạt động nào?",
+      "required_tools": "get_weather|recommend_activities",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "basic checks passed",
+      "chatbot_latency_ms": 8459,
+      "chatbot_answer": "Nếu Phú Quốc mưa to vào ngày 12/6/2026, bạn nên ưu tiên các hoạt động trong nhà hoặc ít phụ thuộc thời tiết:\n\n- Tham quan nhà thùng nước mắm, bảo tàng (bảo tàng Hồ Chí Minh tại Phú Quốc, bảo tàng Cội Nguồn).\n- Thư giãn tại spa, khu nghỉ dưỡng, hoặc khám phá khu phức hợp giải trí như VinWonders (có khu vực mái che).\n- Ăn uống và mua sắm tại chợ đêm Dương Đông, chợ đêm Phú Quốc (có mái che).\n- Nếu muốn di chuyển, hãy dùng taxi hoặc ô tô riêng.\n\nLưu ý: thông tin thời tiết và tình trạng hoạt động cụ thể cần được kiểm tra với nguồn dữ liệu thời tiết hoặc hệ thống đặt vé vào thời điểm gần ngày đi để có lịch trình chính xác nhất.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 13661,
+      "agent_loop_count": 2,
+      "agent_error_code": "",
+      "agent_tools_called": "get_weather|recommend_activities",
+      "agent_answer": "Thời tiết Phu Quoc ngày 2026-06-12: heavy rain, nhiệt độ 25-30°C, xác suất mưa 80%.\n\nHoạt động phù hợp tại Phu Quoc:\n- Pearl Farm Visit (indoor): 50.000 VND. khoảng 2.0 giờ.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Phu Quoc",
+            "date": "2026-06-12"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Phu Quoc",
+            "date": "2026-06-12",
+            "temp_high_c": 30,
+            "temp_low_c": 25,
+            "rain_probability": 0.8,
+            "condition": "heavy rain"
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "recommend_activities",
+          "args": {
+            "city": "Phu Quoc",
+            "condition": "heavy rain"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Phu Quoc",
+            "condition": "heavy rain",
+            "max_price": null,
+            "activity_type": null,
+            "results": [
+              {
+                "city": "Phu Quoc",
+                "activity_name": "Pearl Farm Visit",
+                "type": "indoor",
+                "price": 50000,
+                "suitable_condition": "rainy",
+                "duration_hours": 2.0
+              }
+            ],
+            "excluded_by_price": []
+          }
+        },
+        {
+          "step": 2,
+          "type": "final_answer",
+          "content": "Thời tiết Phu Quoc ngày 2026-06-12: heavy rain, nhiệt độ 25-30°C, xác suất mưa 80%.\n\nHoạt động phù hợp tại Phu Quoc:\n- Pearl Farm Visit (indoor): 50.000 VND. khoảng 2.0 giờ."
+        }
+      ]
+    },
+    {
+      "id": "T08",
+      "type": "missing_route",
+      "difficulty": "edge",
+      "user_query": "Tìm chuyến HAN -> HUI ngày 2026-06-10 dưới 2 triệu.",
+      "required_tools": "search_trips",
+      "expected_error_code": "NO_ROUTE",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "basic checks passed",
+      "chatbot_latency_ms": 5793,
+      "chatbot_answer": "Hiện tại tôi không có dữ liệu thực tế về giá vé, mã chuyến bay hay lịch bay cụ thể. Để tìm chuyến bay HAN → HUI ngày 10/06/2026 dưới 2 triệu, bạn vui lòng kiểm tra trực tiếp trên các website đặt vé (Vietnam Airlines, VietJet, Bamboo Airways…) hoặc ứng dụng du lịch. Giá vé thường thay đổi theo thời điểm và khuyến mãi. Nếu bạn cần hỗ trợ thêm về kế hoạch tổng thể (khách sạn, di chuyển…) khi đã có chuyến bay, hãy cho tôi biết nhé.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 4526,
+      "agent_loop_count": 1,
+      "agent_error_code": "NO_ROUTE",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Không có route HAN -> HUI ngày 2026-06-10 trong dữ liệu.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "HUI",
+            "date": "2026-06-10",
+            "max_price": 2000000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "NO_ROUTE",
+            "origin": "HAN",
+            "destination": "HUI",
+            "date": "2026-06-10",
+            "results": [],
+            "message": "No trips found for this route/date."
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Không có route HAN -> HUI ngày 2026-06-10 trong dữ liệu."
+        }
+      ]
+    },
+    {
+      "id": "T09",
+      "type": "hotel_plan",
+      "difficulty": "medium",
+      "user_query": "Tôi đi Đà Nẵng ngày 2026-06-10. Tìm chuyến dưới 1.5 triệu và khách sạn dưới 800 nghìn một đêm.",
+      "required_tools": "search_trips|search_hotels",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ501; missing expected number 1500000; missing expected number 1200000",
+      "chatbot_latency_ms": 6636,
+      "chatbot_answer": "Để giúp bạn tìm chuyến bay và khách sạn phù hợp, mình cần biết thêm thông tin:\n\n- Bạn xuất phát từ thành phố nào? (Ví dụ: Hà Nội, TP. HCM, v.v.)  \n- Bạn đi một mình hay bao nhiêu người? Số đêm lưu trú dự kiến?\n\nVì mình không có dữ liệu vé và khách sạn thực tế, nên sau khi có điểm đi, mình có thể gợi ý hướng tìm kiếm hoặc ước tính chung dựa trên giá tham khảo.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 13816,
+      "agent_loop_count": 2,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|search_hotels",
+      "agent_answer": "Các chuyến HAN -> DAD ngày 2026-06-10 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ501: 07:30-08:50. 1.200.000 VND/vé. còn 10 ghế. phí hành lý 150.000 VND.\n\nKhách sạn phù hợp tại Da Nang dưới 800.000 VND/đêm:\n- My Khe Budget Stay: 2 sao. 450.000 VND/đêm. còn 6 phòng.\n- Beach Light Hotel: 3 sao. 700.000 VND/đêm. còn 5 phòng.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "max_price": 1500000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "passengers": 1,
+            "max_price": 1500000,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ501",
+                "departure_time": "07:30",
+                "arrival_time": "08:50",
+                "price": 1200000,
+                "seats_left": 10,
+                "baggage_fee": 150000
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ501",
+                "departure_time": "07:30",
+                "arrival_time": "08:50",
+                "price": 1200000,
+                "seats_left": 10,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN161",
+                "departure_time": "11:00",
+                "arrival_time": "12:20",
+                "price": 1550000,
+                "seats_left": 4,
+                "baggage_fee": 0
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "search_hotels",
+          "args": {
+            "city": "Đà Nẵng",
+            "max_price_per_night": 800000,
+            "rooms": 1
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "max_price_per_night": 800000,
+            "rooms": 1,
+            "results": [
+              {
+                "city": "Da Nang",
+                "hotel_name": "My Khe Budget Stay",
+                "stars": 2,
+                "price_per_night": 450000,
+                "available_rooms": 6,
+                "near_center": false,
+                "breakfast_included": false
+              },
+              {
+                "city": "Da Nang",
+                "hotel_name": "Beach Light Hotel",
+                "stars": 3,
+                "price_per_night": 700000,
+                "available_rooms": 5,
+                "near_center": false,
+                "breakfast_included": true
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "final_answer",
+          "content": "Các chuyến HAN -> DAD ngày 2026-06-10 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ501: 07:30-08:50. 1.200.000 VND/vé. còn 10 ghế. phí hành lý 150.000 VND.\n\nKhách sạn phù hợp tại Da Nang dưới 800.000 VND/đêm:\n- My Khe Budget Stay: 2 sao. 450.000 VND/đêm. còn 6 phòng.\n- Beach Light Hotel: 3 sao. 700.000 VND/đêm. còn 5 phòng."
+        }
+      ]
+    },
+    {
+      "id": "T10",
+      "type": "transport_cost",
+      "difficulty": "easy",
+      "user_query": "Tôi đáp xuống TP.HCM ngày 2026-06-10. Ước tính taxi từ sân bay về trung tâm bao nhiêu?",
+      "required_tools": "estimate_local_transport",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected number 180000",
+      "chatbot_latency_ms": 6131,
+      "chatbot_answer": "Chào bạn! Từ sân bay Tân Sơn Nhất về trung tâm TP.HCM (quận 1) khoảng 8–10 km, giá taxi tham khảo thường dao động **80.000 – 150.000 VND** tùy hãng và loại xe. Con số này chỉ là ước tính chung, bạn nên kiểm tra trực tiếp từ các hãng taxi hoặc ứng dụng gọi xe (Grab, Be) vào thời điểm gần ngày đi để có giá chính xác nhé.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 2867,
+      "agent_loop_count": 1,
+      "agent_error_code": "",
+      "agent_tools_called": "estimate_local_transport",
+      "agent_answer": "Di chuyển từ Tan Son Nhat International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 35 phút.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "estimate_local_transport",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "transport_type": "taxi"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "from_airport": "Tan Son Nhat International Airport",
+            "transport_type": "taxi",
+            "cost": 180000,
+            "duration_minutes": 35
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Di chuyển từ Tan Son Nhat International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 35 phút."
+        }
+      ]
+    },
+    {
+      "id": "T11",
+      "type": "missing_required_info",
+      "difficulty": "edge",
+      "user_query": "Tôi muốn đi từ Hà Nội vào TP.HCM cho 2 người, tìm vé rẻ và xem có mưa không.",
+      "required_tools": "none",
+      "expected_error_code": "MISSING_REQUIRED_INFO",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "basic checks passed",
+      "chatbot_latency_ms": 9425,
+      "chatbot_answer": "Chào bạn, để hỗ trợ bạn tìm vé rẻ và kiểm tra thời tiết phù hợp, mình cần thêm thông tin:\n\n1. **Ngày đi**: Bạn dự định khởi hành vào ngày nào? (ví dụ: thứ Hai, ngày 10/4, v.v.)  \n2. **Phương tiện**: Bạn muốn đi bằng **máy bay**, **tàu hỏa** hay **xe khách**?  \n3. **Ngân sách vé rẻ**: Bạn mong muốn mức giá khoảng bao nhiêu? (không bắt buộc nhưng sẽ giúp ích)  \n\nVề thời tiết, sau khi có ngày cụ thể, mình sẽ đưa ra nhận định chung dựa trên mùa (vì hiện tại mình không có dữ liệu thời tiết chính xác, bạn có thể kiểm tra thêm trên app thời tiết).  \n\nHãy cung cấp thông tin trên để mình lên kế hoạch chi tiết nhất nhé!",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 1,
+      "agent_loop_count": 1,
+      "agent_error_code": "MISSING_REQUIRED_INFO",
+      "agent_tools_called": "",
+      "agent_answer": "Bạn muốn đi ngày nào? Vui lòng cung cấp ngày theo định dạng YYYY-MM-DD.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "clarification",
+          "content": "Bạn muốn đi ngày nào? Vui lòng cung cấp ngày theo định dạng YYYY-MM-DD.",
+          "observation": {
+            "status": "MISSING_REQUIRED_INFO"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T12",
+      "type": "missing_weather",
+      "difficulty": "edge",
+      "user_query": "Thời tiết TP.HCM ngày 2026-06-20 như thế nào?",
+      "required_tools": "get_weather",
+      "expected_error_code": "MISSING_WEATHER",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "basic checks passed",
+      "chatbot_latency_ms": 4712,
+      "chatbot_answer": "Xin lỗi, hiện tại tôi không có dữ liệu dự báo thời tiết cho ngày cụ thể trong tương lai xa (20/06/2026). Thông tin thời tiết cần được cập nhật từ các nguồn chính thức theo thời gian thực. Bạn có thể tham khảo các ứng dụng dự báo thời tiết hoặc trang web uy tín gần thời điểm đó để có thông tin chính xác.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 3920,
+      "agent_loop_count": 1,
+      "agent_error_code": "MISSING_WEATHER",
+      "agent_tools_called": "get_weather",
+      "agent_answer": "Không có dữ liệu thời tiết cho Ho Chi Minh City ngày 2026-06-20.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-20"
+          },
+          "observation": {
+            "status": "MISSING_WEATHER",
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-20",
+            "message": "No weather record found for this city/date."
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Không có dữ liệu thời tiết cho Ho Chi Minh City ngày 2026-06-20."
+        }
+      ]
+    },
+    {
+      "id": "T13",
+      "type": "simple_trip",
+      "difficulty": "easy",
+      "user_query": "Tìm chuyến SGN -> CXR ngày 2026-06-11 dưới 1 triệu.",
+      "required_tools": "search_trips",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ601; missing expected number 900000",
+      "chatbot_latency_ms": 43416,
+      "chatbot_answer": "Tôi không có dữ liệu vé máy bay thời gian thực nên không thể kiểm tra giá chính xác cho chuyến SGN → CXR ngày 11/06/2026 dưới 1 triệu.\n\nBạn vui lòng kiểm tra trực tiếp trên các trang bán vé (Vietnam Airlines, VietJet, Bamboo, hoặc website so sánh giá) để có thông tin chính xác. Giá vé nội địa tầm xa như SGN → CXR thường dao động và khả năng có vé dưới 1 triệu vào thời điểm đó còn phụ thuộc vào chương trình khuyến mãi hoặc múi giờ bay thấp điểm. Nếu cần hỗ trợ các phần khác (khách sạn, hoạt động tại Nha Trang) bạn cứ hỏi tôi.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 3432,
+      "agent_loop_count": 1,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Các chuyến SGN -> CXR ngày 2026-06-11 dưới 1.000.000 VND/vé phù hợp:\n- VietJet VJ601: 07:00-08:10. 900.000 VND/vé. còn 12 ghế. phí hành lý 150.000 VND.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "SGN",
+            "destination": "CXR",
+            "date": "2026-06-11",
+            "max_price": 1000000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "SGN",
+            "destination": "CXR",
+            "date": "2026-06-11",
+            "passengers": 1,
+            "max_price": 1000000,
+            "results": [
+              {
+                "origin": "SGN",
+                "destination": "CXR",
+                "date": "2026-06-11",
+                "provider": "VietJet",
+                "flight_no": "VJ601",
+                "departure_time": "07:00",
+                "arrival_time": "08:10",
+                "price": 900000,
+                "seats_left": 12,
+                "baggage_fee": 150000
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "SGN",
+                "destination": "CXR",
+                "date": "2026-06-11",
+                "provider": "VietJet",
+                "flight_no": "VJ601",
+                "departure_time": "07:00",
+                "arrival_time": "08:10",
+                "price": 900000,
+                "seats_left": 12,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "CXR",
+                "date": "2026-06-11",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN1340",
+                "departure_time": "16:10",
+                "arrival_time": "17:20",
+                "price": 1350000,
+                "seats_left": 4,
+                "baggage_fee": 0
+              }
+            ]
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Các chuyến SGN -> CXR ngày 2026-06-11 dưới 1.000.000 VND/vé phù hợp:\n- VietJet VJ601: 07:00-08:10. 900.000 VND/vé. còn 12 ghế. phí hành lý 150.000 VND."
+        }
+      ]
+    },
+    {
+      "id": "T14",
+      "type": "no_budget_match",
+      "difficulty": "edge",
+      "user_query": "Tìm chuyến HAN -> PQC ngày 2026-06-12 dưới 1 triệu.",
+      "required_tools": "search_trips",
+      "expected_error_code": "NO_MATCHING_TRIP",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "missing expected flight code VJ455; missing expected number 1000000; missing expected number 1850000",
+      "chatbot_latency_ms": 7234,
+      "chatbot_answer": "Xin chào, hiện tại tôi không có dữ liệu thời gian thực về giá vé hoặc lịch bay cụ thể. Để tìm chuyến bay từ HAN (Hà Nội) đến PQC (Phú Quốc) vào ngày 12/06/2026 với giá dưới 1 triệu đồng, bạn vui lòng tra cứu trực tiếp trên website của các hãng bay (Vietnam Airlines, Vietjet, Bamboo Airways,…) hoặc các trang đặt vé uy tín, vì thông tin giá cả và khuyến mãi thay đổi liên tục.\n\nTôi có thể hỗ trợ các câu hỏi khác về lịch trình, thời tiết, khách sạn hay di chuyển nội đô nếu bạn cần. Bạn muốn tôi giúp gì thêm không?",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 3859,
+      "agent_loop_count": 1,
+      "agent_error_code": "NO_MATCHING_TRIP",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Không có chuyến HAN -> PQC ngày 2026-06-12 dưới 1.000.000 VND/vé phù hợp ngân sách. Chuyến rẻ nhất hiện có là VietJet VJ455 giá 1.850.000 VND.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "max_price": 1000000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "NO_MATCHING_TRIP",
+            "origin": "HAN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "passengers": 1,
+            "max_price": 1000000,
+            "results": [],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "VietJet",
+                "flight_no": "VJ455",
+                "departure_time": "05:50",
+                "arrival_time": "08:00",
+                "price": 1850000,
+                "seats_left": 1,
+                "baggage_fee": 200000
+              },
+              {
+                "origin": "HAN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH1621",
+                "departure_time": "14:10",
+                "arrival_time": "16:20",
+                "price": 2450000,
+                "seats_left": 6,
+                "baggage_fee": 150000
+              }
+            ],
+            "message": "Trips exist for this route/date, but none match the budget."
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Không có chuyến HAN -> PQC ngày 2026-06-12 dưới 1.000.000 VND/vé phù hợp ngân sách. Chuyến rẻ nhất hiện có là VietJet VJ455 giá 1.850.000 VND."
+        }
+      ]
+    },
+    {
+      "id": "T15",
+      "type": "multi_step_weather_outfit",
+      "difficulty": "hard",
+      "user_query": "Tôi muốn đi từ Sài Gòn ra Đà Nẵng ngày 2026-06-10 cho 2 người dưới 1.5 triệu mỗi vé. Thời tiết có phù hợp đi biển không?",
+      "required_tools": "search_trips|get_weather|recommend_activities",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ621; missing expected flight code QH171; missing expected number 1500000; missing expected number 1100000",
+      "chatbot_latency_ms": 13026,
+      "chatbot_answer": "Chào bạn,\n\nCảm ơn bạn đã cung cấp thông tin. Dưới đây là phân tích dựa trên yêu cầu của bạn:\n\n- **Vé máy bay Sài Gòn – Đà Nẵng ngày 10/06/2026**: Mức giá dưới 1,5 triệu/vé cho 2 người là khả thi nếu bạn đặt sớm hoặc săn vé khuyến mãi. Tuy nhiên, hiện tại tôi không có dữ liệu chính xác về giá vé. Bạn vui lòng kiểm tra trực tiếp trên website các hãng hàng không (Vietjet, Bamboo, Vietnam Airlines) hoặc các trang đặt vé uy tín để có thông tin cập nhật.\n\n- **Thời tiết và đi biển**: Tháng 6 ở Đà Nẵng là cao điểm mùa hè, trời nắng nóng, nhiệt độ thường trên 30°C, thích hợp cho các hoạt động biển như tắm, lặn ngắm san hô. Tuy nhiên, đây cũng là thời điểm có thể xuất hiện mưa rào bất chợt. Do ngày cụ thể còn xa, tôi không thể dự báo chính xác. Bạn nên theo dõi dự báo thời tiết gần ngày đi để chủ động.\n\nNếu bạn cần thêm gợi ý về khách sạn, di chuyển nội đô hoặc ước tính tổng chi phí, hãy cho tôi biết nhé.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 22958,
+      "agent_loop_count": 3,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|get_weather|recommend_activities",
+      "agent_answer": "Các chuyến SGN -> DAD ngày 2026-06-10 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ621: 09:15-10:35. 1.100.000 VND/vé. còn 2 ghế. phí hành lý 150.000 VND.\n- Bamboo Airways QH171: 18:00-19:20. 1.450.000 VND/vé. còn 6 ghế. phí hành lý 120.000 VND.\n\nThời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%.\n\nHoạt động phù hợp tại Da Nang:\n- Han River Walk (outdoor): 0 VND. khoảng 1.0 giờ.\n- My Khe Beach (outdoor): 0 VND. khoảng 3.0 giờ.\n- Ba Na Hills (outdoor): 900.000 VND. khoảng 6.0 giờ.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "SGN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "max_price": 1500000,
+            "passengers": 2
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "SGN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "passengers": 2,
+            "max_price": 1500000,
+            "results": [
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ621",
+                "departure_time": "09:15",
+                "arrival_time": "10:35",
+                "price": 1100000,
+                "seats_left": 2,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH171",
+                "departure_time": "18:00",
+                "arrival_time": "19:20",
+                "price": 1450000,
+                "seats_left": 6,
+                "baggage_fee": 120000
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ621",
+                "departure_time": "09:15",
+                "arrival_time": "10:35",
+                "price": 1100000,
+                "seats_left": 2,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH171",
+                "departure_time": "18:00",
+                "arrival_time": "19:20",
+                "price": 1450000,
+                "seats_left": 6,
+                "baggage_fee": 120000
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Da Nang",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "date": "2026-06-10",
+            "temp_high_c": 34,
+            "temp_low_c": 28,
+            "rain_probability": 0.3,
+            "condition": "sunny"
+          }
+        },
+        {
+          "step": 3,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "recommend_activities",
+          "args": {
+            "city": "Da Nang",
+            "condition": "sunny",
+            "max_price": null,
+            "activity_type": "outdoor"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "condition": "sunny",
+            "max_price": null,
+            "activity_type": "outdoor",
+            "results": [
+              {
+                "city": "Da Nang",
+                "activity_name": "Han River Walk",
+                "type": "outdoor",
+                "price": 0,
+                "suitable_condition": "cloudy",
+                "duration_hours": 1.0
+              },
+              {
+                "city": "Da Nang",
+                "activity_name": "My Khe Beach",
+                "type": "outdoor",
+                "price": 0,
+                "suitable_condition": "sunny",
+                "duration_hours": 3.0
+              },
+              {
+                "city": "Da Nang",
+                "activity_name": "Ba Na Hills",
+                "type": "outdoor",
+                "price": 900000,
+                "suitable_condition": "sunny",
+                "duration_hours": 6.0
+              }
+            ],
+            "excluded_by_price": []
+          }
+        },
+        {
+          "step": 3,
+          "type": "final_answer",
+          "content": "Các chuyến SGN -> DAD ngày 2026-06-10 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ621: 09:15-10:35. 1.100.000 VND/vé. còn 2 ghế. phí hành lý 150.000 VND.\n- Bamboo Airways QH171: 18:00-19:20. 1.450.000 VND/vé. còn 6 ghế. phí hành lý 120.000 VND.\n\nThời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%.\n\nHoạt động phù hợp tại Da Nang:\n- Han River Walk (outdoor): 0 VND. khoảng 1.0 giờ.\n- My Khe Beach (outdoor): 0 VND. khoảng 3.0 giờ.\n- Ba Na Hills (outdoor): 900.000 VND. khoảng 6.0 giờ."
+        }
+      ]
+    },
+    {
+      "id": "T16",
+      "type": "multi_step_trip_hotel_activity",
+      "difficulty": "hard",
+      "user_query": "Tôi đi SGN -> DAD ngày 2026-06-10, cần vé dưới 1.5 triệu, khách sạn dưới 1 triệu và nếu trời nắng thì gợi ý hoạt động ngoài trời.",
+      "required_tools": "search_trips|get_weather|search_hotels|recommend_activities",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ621; missing expected flight code QH171; missing expected number 1500000; missing expected number 1000000",
+      "chatbot_latency_ms": 12335,
+      "chatbot_answer": "Chào bạn!\n\n**Chuyến bay SGN → DAD (10/06/2026)**\n- Giá vé dưới 1,5 triệu là khả thi với các hãng bay nội địa (Vietjet, Bamboo, Vietravel Airlines…). Tuy nhiên, tôi không có dữ liệu giá chính xác tại thời điểm này – bạn vui lòng kiểm tra trực tiếp trên web/app đặt vé hoặc liên hệ hãng để biết giá thực tế.\n\n**Khách sạn tại Đà Nẵng (< 1 triệu/đêm)**\n- Bạn có thể tìm homestay hoặc khách sạn 2–3 sao khu vực gần biển (Mỹ Khê, Phước Mỹ) hoặc trung tâm thành phố. Giá tham khảo theo mùa và loại phòng, tôi không có số liệu chính xác để cam kết. Nên kiểm tra trên các ứng dụng đặt phòng.\n\n**Hoạt động ngoài trời (nếu trời nắng)**\n- Tháng 6 tại Đà Nẵng thường có thời tiết nắng ấm. Bạn có thể tham khảo:\n  - Tắm biển và đi dạo tại **Bãi biển Mỹ Khê**.\n  - Tham quan **Ngũ Hành Sơn**, **Bán đảo Sơn Trà**.\n  - Ghé **phố cổ Hội An** (cách ~30 km).\n- Tuy nhiên, thời tiết thực tế có thể thay đổi – hãy theo dõi dự báo sát ngày đi.\n\n**Thông tin cần thêm:**\nBạn đi mấy người và dự định ở lại Đà Nẵng bao nhiêu đêm? Nếu có thêm chi tiết, tôi sẽ tư vấn cụ thể hơn về lịch trình và chi phí.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 29796,
+      "agent_loop_count": 4,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|get_weather|search_hotels|recommend_activities",
+      "agent_answer": "Các chuyến SGN -> DAD ngày 2026-06-10 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ621: 09:15-10:35. 1.100.000 VND/vé. còn 2 ghế. phí hành lý 150.000 VND.\n- Bamboo Airways QH171: 18:00-19:20. 1.450.000 VND/vé. còn 6 ghế. phí hành lý 120.000 VND.\n\nThời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%.\n\nKhách sạn phù hợp tại Da Nang dưới 1.000.000 VND/đêm:\n- My Khe Budget Stay: 2 sao. 450.000 VND/đêm. còn 6 phòng.\n- Beach Light Hotel: 3 sao. 700.000 VND/đêm. còn 5 phòng.\n\nHoạt động phù hợp tại Da Nang:\n- Han River Walk (outdoor): 0 VND. khoảng 1.0 giờ.\n- My Khe Beach (outdoor): 0 VND. khoảng 3.0 giờ.\n- Ba Na Hills (outdoor): 900.000 VND. khoảng 6.0 giờ.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "SGN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "max_price": 1500000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "SGN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "passengers": 1,
+            "max_price": 1500000,
+            "results": [
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ621",
+                "departure_time": "09:15",
+                "arrival_time": "10:35",
+                "price": 1100000,
+                "seats_left": 2,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH171",
+                "departure_time": "18:00",
+                "arrival_time": "19:20",
+                "price": 1450000,
+                "seats_left": 6,
+                "baggage_fee": 120000
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ621",
+                "departure_time": "09:15",
+                "arrival_time": "10:35",
+                "price": 1100000,
+                "seats_left": 2,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH171",
+                "departure_time": "18:00",
+                "arrival_time": "19:20",
+                "price": 1450000,
+                "seats_left": 6,
+                "baggage_fee": 120000
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Da Nang",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "date": "2026-06-10",
+            "temp_high_c": 34,
+            "temp_low_c": 28,
+            "rain_probability": 0.3,
+            "condition": "sunny"
+          }
+        },
+        {
+          "step": 3,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "search_hotels",
+          "args": {
+            "city": "Da Nang",
+            "max_price_per_night": 1000000,
+            "rooms": 1
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "max_price_per_night": 1000000,
+            "rooms": 1,
+            "results": [
+              {
+                "city": "Da Nang",
+                "hotel_name": "My Khe Budget Stay",
+                "stars": 2,
+                "price_per_night": 450000,
+                "available_rooms": 6,
+                "near_center": false,
+                "breakfast_included": false
+              },
+              {
+                "city": "Da Nang",
+                "hotel_name": "Beach Light Hotel",
+                "stars": 3,
+                "price_per_night": 700000,
+                "available_rooms": 5,
+                "near_center": false,
+                "breakfast_included": true
+              }
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "recommend_activities",
+          "args": {
+            "city": "Da Nang",
+            "condition": "sunny",
+            "activity_type": "outdoor"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "condition": "sunny",
+            "max_price": null,
+            "activity_type": "outdoor",
+            "results": [
+              {
+                "city": "Da Nang",
+                "activity_name": "Han River Walk",
+                "type": "outdoor",
+                "price": 0,
+                "suitable_condition": "cloudy",
+                "duration_hours": 1.0
+              },
+              {
+                "city": "Da Nang",
+                "activity_name": "My Khe Beach",
+                "type": "outdoor",
+                "price": 0,
+                "suitable_condition": "sunny",
+                "duration_hours": 3.0
+              },
+              {
+                "city": "Da Nang",
+                "activity_name": "Ba Na Hills",
+                "type": "outdoor",
+                "price": 900000,
+                "suitable_condition": "sunny",
+                "duration_hours": 6.0
+              }
+            ],
+            "excluded_by_price": []
+          }
+        },
+        {
+          "step": 4,
+          "type": "final_answer",
+          "content": "Các chuyến SGN -> DAD ngày 2026-06-10 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ621: 09:15-10:35. 1.100.000 VND/vé. còn 2 ghế. phí hành lý 150.000 VND.\n- Bamboo Airways QH171: 18:00-19:20. 1.450.000 VND/vé. còn 6 ghế. phí hành lý 120.000 VND.\n\nThời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%.\n\nKhách sạn phù hợp tại Da Nang dưới 1.000.000 VND/đêm:\n- My Khe Budget Stay: 2 sao. 450.000 VND/đêm. còn 6 phòng.\n- Beach Light Hotel: 3 sao. 700.000 VND/đêm. còn 5 phòng.\n\nHoạt động phù hợp tại Da Nang:\n- Han River Walk (outdoor): 0 VND. khoảng 1.0 giờ.\n- My Khe Beach (outdoor): 0 VND. khoảng 3.0 giờ.\n- Ba Na Hills (outdoor): 900.000 VND. khoảng 6.0 giờ."
+        }
+      ]
+    },
+    {
+      "id": "T17",
+      "type": "total_cost",
+      "difficulty": "medium",
+      "user_query": "Đi SGN -> PQC ngày 2026-06-12 cho 3 người, chọn vé rẻ nhất dưới 1.5 triệu và tính tiền vé cộng taxi về trung tâm.",
+      "required_tools": "search_trips|estimate_local_transport|calculate_total_cost",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ331; missing expected number 950000",
+      "chatbot_latency_ms": 19220,
+      "chatbot_answer": "Chào bạn,\n\nCảm ơn bạn đã gửi yêu cầu. Tôi xin hỗ trợ bạn lên kế hoạch cho chuyến đi SGN (TP.HCM) → PQC (Phú Quốc) vào ngày 12/06/2026 cho 3 người, với mong muốn tìm vé máy bay rẻ nhất dưới 1.5 triệu/người và tính tổng chi phí vé cộng với taxi về trung tâm.\n\nTuy nhiên, hiện tại tôi **không có dữ liệu thực tế** về giá vé máy bay, mã chuyến bay, hay bảng giá taxi. Vì vậy, tôi không thể đưa ra con số chính xác hay đặt vé cho bạn.\n\n**Những thông tin bạn cần kiểm tra trực tiếp:**\n1. **Vé máy bay**: Bạn vui lòng tham khảo các hãng hàng không nội địa (VietJet, Vietnam Airlines, Bamboo Airways) hoặc các trang đặt vé uy tín để có giá cụ thể ngày 12/06/2026. Vé một chiều SGN→PQC thường dao động từ 500.000 – 1.500.000 VND (chưa gồm thuế phí) và mức dưới 1.5 triệu là hoàn toàn khả thi.  \n   Lưu ý: Giá có thể thay đổi theo thời điểm đặt, khung giờ bay, và chính sách hành lý.\n\n2. **Taxi từ sân bay về trung tâm Phú Quốc**: Sân bay PQC cách trung tâm Dương Đông khoảng 10 km. Giá taxi ước tính khoảng **150.000 – 200.000 VND** cho một xe 4 chỗ (đã bao gồm cả nhóm 3 người). Nếu bạn đi taxi truyền thống, thường tính theo km hoặc giá cố định và có thêm phí cửa.\n\n**Cách tính tổng chi phí (ước tính sau khi bạn có giá vé cụ thể):**\n- Tiền vé: *Giá vé mỗi người × 3*\n- Tiền taxi: khoảng 150.000 – 200.000 VND\n- **Tổng cộng** = *(Giá vé × 3) + 150.000*\n\nVí dụ minh họa (không phải số thật): Nếu vé mỗi người là 1.200.000 VND → 3 vé = 3.600.000 VND + 200.000 VND taxi = 3.800.000 VND.\n\n**Đề xuất:**\n- Vui lòng xác nhận bạn cần vé một chiều hay khứ hồi?\n- Nếu đã có giá vé tham khảo, tôi có thể giúp bạn tính tổng chi phí dựa trên số liệu đó.\n- Để biết giá chính xác, bạn nên truy cập website các hãng hàng không hoặc ứng dụng đặt vé.\n\nHy vọng bạn sẽ tìm được chuyến bay phù hợp! Nếu có thêm câu hỏi, đừng ngần ngại hỏi tôi nhé.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 38738,
+      "agent_loop_count": 3,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|estimate_local_transport|calculate_total_cost",
+      "agent_answer": "Các chuyến SGN -> PQC ngày 2026-06-12 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ331: 10:30-11:30. 950.000 VND/vé. còn 9 ghế. phí hành lý 150.000 VND.\n- Vietnam Airlines VN1825: 15:45-16:45. 1.450.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nDi chuyển từ Phu Quoc International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 25 phút.\n\nTổng chi phí cơ bản: 3.480.000 VND (vé 2.850.000. hành lý 450.000. khách sạn 0. di chuyển 180.000. hoạt động 0).",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "SGN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "max_price": 1500000,
+            "passengers": 3
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "SGN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "passengers": 3,
+            "max_price": 1500000,
+            "results": [
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "VietJet",
+                "flight_no": "VJ331",
+                "departure_time": "10:30",
+                "arrival_time": "11:30",
+                "price": 950000,
+                "seats_left": 9,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN1825",
+                "departure_time": "15:45",
+                "arrival_time": "16:45",
+                "price": 1450000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "VietJet",
+                "flight_no": "VJ331",
+                "departure_time": "10:30",
+                "arrival_time": "11:30",
+                "price": 950000,
+                "seats_left": 9,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN1825",
+                "departure_time": "15:45",
+                "arrival_time": "16:45",
+                "price": 1450000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "estimate_local_transport",
+          "args": {
+            "city": "Phu Quoc",
+            "transport_type": "taxi"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Phu Quoc",
+            "from_airport": "Phu Quoc International Airport",
+            "transport_type": "taxi",
+            "cost": 180000,
+            "duration_minutes": 25
+          }
+        },
+        {
+          "step": 3,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "calculate_total_cost",
+          "args": {
+            "ticket_price": 950000,
+            "passengers": 3,
+            "baggage_fee": 150000,
+            "hotel_price_per_night": 0,
+            "nights": 0,
+            "rooms": 1,
+            "transport_cost": 180000,
+            "activity_price": 0
+          },
+          "observation": {
+            "status": "OK",
+            "line_items": {
+              "ticket_total": 2850000,
+              "baggage_total": 450000,
+              "hotel_total": 0,
+              "transport_total": 180000,
+              "activity_total": 0
+            },
+            "total": 3480000,
+            "currency": "VND"
+          }
+        },
+        {
+          "step": 3,
+          "type": "final_answer",
+          "content": "Các chuyến SGN -> PQC ngày 2026-06-12 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ331: 10:30-11:30. 950.000 VND/vé. còn 9 ghế. phí hành lý 150.000 VND.\n- Vietnam Airlines VN1825: 15:45-16:45. 1.450.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nDi chuyển từ Phu Quoc International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 25 phút.\n\nTổng chi phí cơ bản: 3.480.000 VND (vé 2.850.000. hành lý 450.000. khách sạn 0. di chuyển 180.000. hoạt động 0)."
+        }
+      ]
+    },
+    {
+      "id": "T18",
+      "type": "activity_recommendation",
+      "difficulty": "medium",
+      "user_query": "Đà Nẵng ngày 2026-06-10 trời nắng, gợi ý hoạt động ngoài trời dưới 100 nghìn.",
+      "required_tools": "recommend_activities",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected number 900000",
+      "chatbot_latency_ms": 17971,
+      "chatbot_answer": "Dưới đây là một số gợi ý hoạt động ngoài trời ở Đà Nẵng, phù hợp với điều kiện nắng và ngân sách dưới 100.000 VND:\n\n1. **Biển Mỹ Khê**: Tắm biển, đi bộ dọc bờ biển – miễn phí.  \n2. **Bán đảo Sơn Trà – Chùa Linh Ứng**: Có thể di chuyển bằng xe máy/xe đạp (nếu tự phương tiện) hoặc đi bộ khu vực chùa – vào cửa tự do.  \n3. **Cầu Rồng, cầu Tình Yêu, Cầu Trần Thị Lý**: Dạo bộ, chụp ảnh – không tốn phí.  \n4. **Công viên Biển Đông, Công viên 29/3**: Không gian mở, ghế đá, đi dạo – miễn phí.  \n5. **Ngũ Hành Sơn (khu vực chùa Tam Thai, chùa Linh Ứng)**: Nếu chỉ tham quan khu vực chùa bên ngoài thì không mất vé; leo núi chính có thể có vé vào cửa (thường ~30.000–40.000 VND), vẫn dưới 100k.  \n6. **Chợ Hàn, chợ Cồn**: Vào tham quan miễn phí (chi phí chỉ khi mua sắm, ăn uống).  \n\nLưu ý: Thời tiết ngày 10-06-2026 là giả định dựa trên yêu cầu của bạn. Các hoạt động trên đều có thể thực hiện trong ngày, bạn chỉ cần chú ý mang nước, kem chống nắng.  \n\nNếu cần gợi ý chi tiết hơn hoặc muốn sắp xếp lộ trình, hãy cho tôi biết thêm điểm xuất phát và sở thích cụ thể.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 12040,
+      "agent_loop_count": 2,
+      "agent_error_code": "",
+      "agent_tools_called": "recommend_activities|get_weather",
+      "agent_answer": "Hoạt động phù hợp tại Da Nang dưới 100.000 VND:\n- Han River Walk (outdoor): 0 VND. khoảng 1.0 giờ.\n- My Khe Beach (outdoor): 0 VND. khoảng 3.0 giờ.\nLoại vì vượt ngân sách:\n- Ba Na Hills: 900.000 VND.\n\nThời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "recommend_activities",
+          "args": {
+            "city": "Đà Nẵng",
+            "condition": "sunny",
+            "max_price": 100000,
+            "activity_type": "outdoor"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "condition": "sunny",
+            "max_price": 100000,
+            "activity_type": "outdoor",
+            "results": [
+              {
+                "city": "Da Nang",
+                "activity_name": "Han River Walk",
+                "type": "outdoor",
+                "price": 0,
+                "suitable_condition": "cloudy",
+                "duration_hours": 1.0
+              },
+              {
+                "city": "Da Nang",
+                "activity_name": "My Khe Beach",
+                "type": "outdoor",
+                "price": 0,
+                "suitable_condition": "sunny",
+                "duration_hours": 3.0
+              }
+            ],
+            "excluded_by_price": [
+              {
+                "city": "Da Nang",
+                "activity_name": "Ba Na Hills",
+                "type": "outdoor",
+                "price": 900000,
+                "suitable_condition": "sunny",
+                "duration_hours": 6.0
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Da Nang",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "date": "2026-06-10",
+            "temp_high_c": 34,
+            "temp_low_c": 28,
+            "rain_probability": 0.3,
+            "condition": "sunny"
+          }
+        },
+        {
+          "step": 2,
+          "type": "final_answer",
+          "content": "Hoạt động phù hợp tại Da Nang dưới 100.000 VND:\n- Han River Walk (outdoor): 0 VND. khoảng 1.0 giờ.\n- My Khe Beach (outdoor): 0 VND. khoảng 3.0 giờ.\nLoại vì vượt ngân sách:\n- Ba Na Hills: 900.000 VND.\n\nThời tiết Da Nang ngày 2026-06-10: sunny, nhiệt độ 28-34°C, xác suất mưa 30%."
+        }
+      ]
+    },
+    {
+      "id": "T19",
+      "type": "hotel_no_match",
+      "difficulty": "edge",
+      "user_query": "Tìm khách sạn Phú Quốc dưới 500 nghìn một đêm.",
+      "required_tools": "search_hotels",
+      "expected_error_code": "NO_MATCHING_HOTEL",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "missing expected number 900000; missing expected number 1800000",
+      "chatbot_latency_ms": 10026,
+      "chatbot_answer": "Chào bạn, cảm ơn bạn đã sử dụng Vietnam Trip Planner!\n\nTôi có thể hỗ trợ tư vấn chung về khách sạn Phú Quốc, nhưng hiện tại tôi không có dữ liệu thời gian thực về giá phòng của các khách sạn cụ thể. Vì vậy, tôi không thể liệt kê chính xác khách sạn nào đang có giá dưới 500.000 VNĐ/đêm.\n\nTuy nhiên, dựa trên kinh nghiệm chung, ở Phú Quốc với ngân sách dưới 500k một đêm, bạn thường có thể tìm được các lựa chọn sau:\n*   **Nhà nghỉ / Homestay bình dân:** Ở các khu vực như Dương Đông, An Thới (xa trung tâm hơn) hoặc dọc đường Trần Hưng Đạo.\n*   **Phòng trong ký túc xá (dorm):** Nếu bạn đi một mình hoặc không ngại ở chung, giá thường rất rẻ.\n*   **Khách sạn mini / nhà khách:** Một số khách sạn nhỏ, cơ bản ở xa bãi biển có thể có giá dưới 500k vào mùa thấp điểm (mùa mưa, khoảng tháng 5-10).\n\n**Giới hạn của tôi:**\nTôi không thể kiểm tra giá thực tế, tình trạng phòng trống, hay đặt phòng cho bạn. Để có thông tin chính xác và cập nhật nhất, bạn vui lòng tham khảo trực tiếp trên các trang đặt phòng như Booking.com, Agoda, Traveloka, hoặc liên hệ trực tiếp khách sạn/homestay qua Google Maps.\n\n**Để tôi tư vấn tốt hơn, bạn có thể cho tôi biết thêm:**\n*   Bạn đi vào thời gian nào? (Ngày tháng cụ thể) – Vì giá phòng thay đổi theo mùa.\n*   Bạn cần ở khu vực nào? (Gần biển, gần chợ, trung tâm?)\n*   Số lượng người và loại phòng mong muốn? (Phòng đôi, gia đình?)\n\nTôi có thể giúp bạn lên khung thời gian biểu và gợi ý các khu vực nên tìm kiếm dựa trên thông tin bạn cung cấp thêm.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "missing expected number 900000; missing expected number 1800000",
+      "agent_latency_ms": 3556,
+      "agent_loop_count": 1,
+      "agent_error_code": "NO_MATCHING_HOTEL",
+      "agent_tools_called": "search_hotels",
+      "agent_answer": "Không có khách sạn tại Phu Quoc phù hợp ngân sách/phòng yêu cầu.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_hotels",
+          "args": {
+            "city": "Phu Quoc",
+            "max_price_per_night": 500000,
+            "rooms": 1
+          },
+          "observation": {
+            "status": "NO_MATCHING_HOTEL",
+            "city": "Phu Quoc",
+            "max_price_per_night": 500000,
+            "rooms": 1,
+            "results": [],
+            "all_city_hotels": [
+              {
+                "city": "Phu Quoc",
+                "hotel_name": "Island Budget Resort",
+                "stars": 3,
+                "price_per_night": 900000,
+                "available_rooms": 1,
+                "near_center": false,
+                "breakfast_included": true
+              },
+              {
+                "city": "Phu Quoc",
+                "hotel_name": "Sunset Beach Resort",
+                "stars": 4,
+                "price_per_night": 1800000,
+                "available_rooms": 3,
+                "near_center": false,
+                "breakfast_included": true
+              }
+            ],
+            "message": "No hotels match the requested budget and room count."
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Không có khách sạn tại Phu Quoc phù hợp ngân sách/phòng yêu cầu."
+        }
+      ]
+    },
+    {
+      "id": "T20",
+      "type": "missing_required_info",
+      "difficulty": "edge",
+      "user_query": "Tôi muốn đi Đà Nẵng ngày 2026-06-10, tìm vé rẻ nhất.",
+      "required_tools": "none",
+      "expected_error_code": "MISSING_REQUIRED_INFO",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "basic checks passed",
+      "chatbot_latency_ms": 4888,
+      "chatbot_answer": "Xin chào! Mình có thể giúp bạn tìm thông tin chuyến bay đi Đà Nẵng ngày 10/6/2026.\n\nTuy nhiên, mình cần thêm một vài thông tin để hỗ trợ chính xác hơn:\n\n1. **Bạn đi từ thành phố nào?** (ví dụ: Hà Nội, TP. HCM, Đà Nẵng, v.v.)\n2. **Số lượng người đi?** (1 người, 2 người, hay nhóm đông?)\n\nHiện tại mình chưa có dữ liệu vé chính xác (chưa kết nối kho dữ liệu đặt vé), nên sẽ không thể đưa ra mã chuyến bay hay giá cụ thể. Nếu bạn cung cấp thêm thông tin, mình có thể gợi ý cách tìm vé rẻ phù hợp, hoặc ước tính khung chi phí dựa trên suy luận chung.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 0,
+      "agent_loop_count": 1,
+      "agent_error_code": "MISSING_REQUIRED_INFO",
+      "agent_tools_called": "",
+      "agent_answer": "Bạn muốn khởi hành từ thành phố hoặc sân bay nào?",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "clarification",
+          "content": "Bạn muốn khởi hành từ thành phố hoặc sân bay nào?",
+          "observation": {
+            "status": "MISSING_REQUIRED_INFO"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T21",
+      "type": "multi_tool_full_plan",
+      "difficulty": "hard",
+      "user_query": "Tôi muốn đi từ Hà Nội vào TP.HCM ngày 2026-06-10 cho 2 người, vé dưới 2 triệu mỗi người, khách sạn dưới 1 triệu một đêm, nếu trời mưa thì gợi ý hoạt động phù hợp và tính taxi từ sân bay về trung tâm.",
+      "required_tools": "search_trips|get_weather|search_hotels|recommend_activities|estimate_local_transport|calculate_total_cost",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ121; missing expected flight code VN207; missing expected number 2000000; missing expected number 1750000",
+      "chatbot_latency_ms": 17457,
+      "chatbot_answer": "Cảm ơn bạn đã cung cấp thông tin. Dưới đây là một số gợi ý dựa trên suy luận chung, nhưng cần lưu ý rằng tôi không có dữ liệu thực tế về giá vé, khách sạn, thời tiết hay taxi. Bạn nên kiểm tra lại từ các nguồn chính thức (website hãng bay, ứng dụng đặt phòng, hãng taxi) để có thông tin chính xác.\n\n### 1. Vé máy bay (Hà Nội → TP.HCM ngày 10/06/2026, 2 người, < 2 triệu/vé)\n- Các hãng như Vietjet, Bamboo Airways, Vietnam Airlines thường có nhiều mức giá. Với mức < 2 triệu/vé, bạn có thể tìm được vé khứ hồi hoặc một chiều tùy hãng và thời điểm đặt.\n- Để chắc chắn, hãy tra cứu trên website hoặc app đặt vé trước chuyến đi khoảng 2–4 tháng.\n\n### 2. Khách sạn (< 1 triệu/đêm)\n- TP.HCM có nhiều lựa chọn bình dân (khách sạn 2–3 sao, homestay) dưới 1 triệu/đêm ở trung tâm như quận 1, quận 3.\n- Bạn chưa cho biết sẽ ở lại bao nhiêu đêm. Vui lòng cho tôi biết lịch trình cụ thể (ngày đi và ngày về) để gợi ý chính xác hơn nhé.\n\n### 3. Taxi từ sân bay Tân Sơn Nhất về trung tâm\n- Khoảng cách từ sân bay đến quận 1 khoảng 7–8 km.\n- Giá tham khảo (ước tính):\n  - Taxi truyền thống (Vinasun, Mai Linh): khoảng 80.000–120.000 VND/lượt.\n  - Xe công nghệ (Grab, Be): khoảng 60.000–100.000 VND tuỳ loại xe.\n- Lưu ý: giá thực tế có thể thay đổi theo thời điểm và hãng.\n\n### 4. Hoạt động nếu trời mưa (gợi ý)\nVì mưa thường tập trung vào chiều tối (mùa mưa ở TP.HCM), bạn có thể tham khảo các hoạt động trong nhà:\n- **Bảo tàng** (Bảo tàng Chứng tích Chiến tranh, Bảo tàng TP.HCM, Dinh Độc Lập).\n- **Trung tâm thương mại** (Vincom, Takashimaya, Saigon Centre).\n- **Chợ Bến Thành** (khu vực mái che), **Ẩm thực đường phố** (chọn quán có mái hoặc đi theo nhóm).\n- **Xem phim, nhà hát** (Nhà hát Thành phố, rạp CGV).\n- **Cà phê sách, nhà hàng có view** trong nhà.\n\nBạn có thể bổ sung thêm thông tin còn thiếu (số đêm, sở thích) để tôi hỗ trợ chi tiết hơn. Nếu cần kiểm tra giá vé hay khách sạn, bạn nên xem trực tiếp trên website đặt chỗ nhé!",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 69969,
+      "agent_loop_count": 6,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|get_weather|recommend_activities|search_hotels|estimate_local_transport|calculate_total_cost",
+      "agent_answer": "Các chuyến HAN -> SGN ngày 2026-06-10 dưới 2.000.000 VND/vé phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nThời tiết Ho Chi Minh City ngày 2026-06-10: rainy, nhiệt độ 27-32°C, xác suất mưa 70%.\n\nHoạt động phù hợp tại Ho Chi Minh City:\n- Ben Thanh Market (indoor): 0 VND. khoảng 2.0 giờ.\n- War Remnants Museum (indoor): 40.000 VND. khoảng 2.0 giờ.\n- Independence Palace (indoor): 65.000 VND. khoảng 2.0 giờ.\n\nKhách sạn phù hợp tại Ho Chi Minh City dưới 1.000.000 VND/đêm:\n- Saigon Budget Inn: 3 sao. 650.000 VND/đêm. còn 4 phòng.\n- Ben Thanh Comfort Stay: 3 sao. 850.000 VND/đêm. còn 3 phòng.\n\nDi chuyển từ Tan Son Nhat International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 35 phút.\n\nTổng chi phí cơ bản: 4.690.000 VND (vé 3.500.000. hành lý 360.000. khách sạn 650.000. di chuyển 180.000. hoạt động 0).",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "max_price": 2000000,
+            "passengers": 2
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "passengers": 2,
+            "max_price": 2000000,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH203",
+                "departure_time": "15:00",
+                "arrival_time": "17:10",
+                "price": 2150000,
+                "seats_left": 8,
+                "baggage_fee": 120000
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10",
+            "temp_high_c": 32,
+            "temp_low_c": 27,
+            "rain_probability": 0.7,
+            "condition": "rainy"
+          }
+        },
+        {
+          "step": 3,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "recommend_activities",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "condition": "rainy"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "condition": "rainy",
+            "max_price": null,
+            "activity_type": null,
+            "results": [
+              {
+                "city": "Ho Chi Minh City",
+                "activity_name": "Ben Thanh Market",
+                "type": "indoor",
+                "price": 0,
+                "suitable_condition": "cloudy",
+                "duration_hours": 2.0
+              },
+              {
+                "city": "Ho Chi Minh City",
+                "activity_name": "War Remnants Museum",
+                "type": "indoor",
+                "price": 40000,
+                "suitable_condition": "rainy",
+                "duration_hours": 2.0
+              },
+              {
+                "city": "Ho Chi Minh City",
+                "activity_name": "Independence Palace",
+                "type": "indoor",
+                "price": 65000,
+                "suitable_condition": "rainy",
+                "duration_hours": 2.0
+              }
+            ],
+            "excluded_by_price": []
+          }
+        },
+        {
+          "step": 4,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "search_hotels",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "max_price_per_night": 1000000,
+            "rooms": 1
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "max_price_per_night": 1000000,
+            "rooms": 1,
+            "results": [
+              {
+                "city": "Ho Chi Minh City",
+                "hotel_name": "Saigon Budget Inn",
+                "stars": 3,
+                "price_per_night": 650000,
+                "available_rooms": 4,
+                "near_center": true,
+                "breakfast_included": false
+              },
+              {
+                "city": "Ho Chi Minh City",
+                "hotel_name": "Ben Thanh Comfort Stay",
+                "stars": 3,
+                "price_per_night": 850000,
+                "available_rooms": 3,
+                "near_center": true,
+                "breakfast_included": true
+              }
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "estimate_local_transport",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "transport_type": "taxi"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "from_airport": "Tan Son Nhat International Airport",
+            "transport_type": "taxi",
+            "cost": 180000,
+            "duration_minutes": 35
+          }
+        },
+        {
+          "step": 6,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "calculate_total_cost",
+          "args": {
+            "ticket_price": 1750000,
+            "passengers": 2,
+            "baggage_fee": 180000,
+            "hotel_price_per_night": 650000,
+            "nights": 1,
+            "rooms": 1,
+            "transport_cost": 180000,
+            "activity_price": 0
+          },
+          "observation": {
+            "status": "OK",
+            "line_items": {
+              "ticket_total": 3500000,
+              "baggage_total": 360000,
+              "hotel_total": 650000,
+              "transport_total": 180000,
+              "activity_total": 0
+            },
+            "total": 4690000,
+            "currency": "VND"
+          }
+        },
+        {
+          "step": 6,
+          "type": "final_answer",
+          "content": "Các chuyến HAN -> SGN ngày 2026-06-10 dưới 2.000.000 VND/vé phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nThời tiết Ho Chi Minh City ngày 2026-06-10: rainy, nhiệt độ 27-32°C, xác suất mưa 70%.\n\nHoạt động phù hợp tại Ho Chi Minh City:\n- Ben Thanh Market (indoor): 0 VND. khoảng 2.0 giờ.\n- War Remnants Museum (indoor): 40.000 VND. khoảng 2.0 giờ.\n- Independence Palace (indoor): 65.000 VND. khoảng 2.0 giờ.\n\nKhách sạn phù hợp tại Ho Chi Minh City dưới 1.000.000 VND/đêm:\n- Saigon Budget Inn: 3 sao. 650.000 VND/đêm. còn 4 phòng.\n- Ben Thanh Comfort Stay: 3 sao. 850.000 VND/đêm. còn 3 phòng.\n\nDi chuyển từ Tan Son Nhat International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 35 phút.\n\nTổng chi phí cơ bản: 4.690.000 VND (vé 3.500.000. hành lý 360.000. khách sạn 650.000. di chuyển 180.000. hoạt động 0)."
+        }
+      ]
+    },
+    {
+      "id": "T22",
+      "type": "multi_tool_full_plan",
+      "difficulty": "hard",
+      "user_query": "Lập kế hoạch đi SGN -> PQC ngày 2026-06-12 cho 3 người, chọn vé rẻ nhất dưới 1.5 triệu, kiểm tra thời tiết, gợi ý hoạt động nếu mưa, tính taxi về trung tâm và tổng chi phí cơ bản.",
+      "required_tools": "search_trips|get_weather|recommend_activities|estimate_local_transport|calculate_total_cost",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ331; missing expected flight code VN1825; missing expected number 1500000; missing expected number 950000",
+      "chatbot_latency_ms": 24452,
+      "chatbot_answer": "Chào bạn, Vietnam Trip Planner hỗ trợ bạn lên kế hoạch từ SGN → PQC ngày 12/06/2026 cho 3 người.\n\n**Một số giới hạn:** Tôi không có dữ liệu vé máy bay, thời tiết hay giá taxi thực tế. Các thông tin dưới đây dựa trên suy luận chung và cần đối chiếu thực tế.\n\n---\n\n### 1. Vé máy bay (SGN → PQC)\n- Ngân sách **dưới 1.5 triệu/người** – hoàn toàn khả thi với vé giá rẻ (Vietjet, Bamboo, VN…).  \n- **Giá chính xác cần kiểm tra tại các hãng hoặc đại lý.** Tạm ước: khoảng 1 – 1.3 triệu/người nếu săn được giá tốt.  \n- Tổng vé 3 người: **3 – 4.5 triệu** (tuỳ giá).\n\n### 2. Thời tiết ngày 12/06\n- Tháng 6 là mùa mưa tại Phú Quốc. Thường có mưa rào ngắn vào chiều/tối.  \n- Nên chuẩn bị ô/áo mưa và linh hoạt lịch trình.\n\n### 3. Hoạt động gợi ý nếu mưa\n- **Trong nhà:** Thăm Nhà thùng nước mắm, Bảo tàng Cội nguồn, Chợ đêm Dương Đông, Spa/resort.  \n- **Cáp treo Hòn Thơm** có mái che, nhưng cần tránh gió lớn.  \n- **Lựa chọn:** Khám phá ẩm thực, cà phê, hoặc khu vui chơi trong resort.\n\n### 4. Taxi từ sân bay về trung tâm (Dương Đông)\n- Khoảng cách ~10km, thời gian 15–20 phút.  \n- **Giá ước lượng:** 150.000 – 200.000 VND/xe cho 3 người.  \n- Có thể chọn xe bus (rẻ hơn) nếu muốn tối ưu.\n\n### 5. Tổng chi phí cơ bản (chưa bao gồm ăn uống, lưu trú)\n\n| Khoản mục | Số tiền (VND) |\n|-----------|---------------|\n| Vé máy bay (3 người, giá 1.2tr/vé) | 3.600.000 |\n| Taxi sân bay → trung tâm | 200.000 |\n| **Tổng** | **3.800.000 – 4.700.000** (tuỳ giá vé) |\n\n*Nếu bạn cần thêm ước tính khách sạn, ăn uống, hãy cho tôi biết số đêm và mức chi.*  \nBạn có thể kiểm tra lại vé, thời tiết và giá taxi thực tế để có con số chính xác.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 65505,
+      "agent_loop_count": 5,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|get_weather|recommend_activities|estimate_local_transport|calculate_total_cost",
+      "agent_answer": "Các chuyến SGN -> PQC ngày 2026-06-12 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ331: 10:30-11:30. 950.000 VND/vé. còn 9 ghế. phí hành lý 150.000 VND.\n- Vietnam Airlines VN1825: 15:45-16:45. 1.450.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nThời tiết Phu Quoc ngày 2026-06-12: heavy rain, nhiệt độ 25-30°C, xác suất mưa 80%.\n\nHoạt động phù hợp tại Phu Quoc:\n- Pearl Farm Visit (indoor): 50.000 VND. khoảng 2.0 giờ.\n\nDi chuyển từ Phu Quoc International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 25 phút.\n\nTổng chi phí cơ bản: 3.630.000 VND (vé 2.850.000. hành lý 450.000. khách sạn 0. di chuyển 180.000. hoạt động 150.000).",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "SGN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "max_price": 1500000,
+            "passengers": 3
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "SGN",
+            "destination": "PQC",
+            "date": "2026-06-12",
+            "passengers": 3,
+            "max_price": 1500000,
+            "results": [
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "VietJet",
+                "flight_no": "VJ331",
+                "departure_time": "10:30",
+                "arrival_time": "11:30",
+                "price": 950000,
+                "seats_left": 9,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN1825",
+                "departure_time": "15:45",
+                "arrival_time": "16:45",
+                "price": 1450000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "VietJet",
+                "flight_no": "VJ331",
+                "departure_time": "10:30",
+                "arrival_time": "11:30",
+                "price": 950000,
+                "seats_left": 9,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "SGN",
+                "destination": "PQC",
+                "date": "2026-06-12",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN1825",
+                "departure_time": "15:45",
+                "arrival_time": "16:45",
+                "price": 1450000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Phu Quoc",
+            "date": "2026-06-12"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Phu Quoc",
+            "date": "2026-06-12",
+            "temp_high_c": 30,
+            "temp_low_c": 25,
+            "rain_probability": 0.8,
+            "condition": "heavy rain"
+          }
+        },
+        {
+          "step": 3,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "recommend_activities",
+          "args": {
+            "city": "Phu Quoc",
+            "condition": "heavy rain"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Phu Quoc",
+            "condition": "heavy rain",
+            "max_price": null,
+            "activity_type": null,
+            "results": [
+              {
+                "city": "Phu Quoc",
+                "activity_name": "Pearl Farm Visit",
+                "type": "indoor",
+                "price": 50000,
+                "suitable_condition": "rainy",
+                "duration_hours": 2.0
+              }
+            ],
+            "excluded_by_price": []
+          }
+        },
+        {
+          "step": 4,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "estimate_local_transport",
+          "args": {
+            "city": "Phu Quoc",
+            "transport_type": "taxi"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Phu Quoc",
+            "from_airport": "Phu Quoc International Airport",
+            "transport_type": "taxi",
+            "cost": 180000,
+            "duration_minutes": 25
+          }
+        },
+        {
+          "step": 5,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "calculate_total_cost",
+          "args": {
+            "ticket_price": 950000,
+            "passengers": 3,
+            "baggage_fee": 150000,
+            "hotel_price_per_night": 0,
+            "nights": 0,
+            "rooms": 0,
+            "transport_cost": 180000,
+            "activity_price": 50000
+          },
+          "observation": {
+            "status": "OK",
+            "line_items": {
+              "ticket_total": 2850000,
+              "baggage_total": 450000,
+              "hotel_total": 0,
+              "transport_total": 180000,
+              "activity_total": 150000
+            },
+            "total": 3630000,
+            "currency": "VND"
+          }
+        },
+        {
+          "step": 5,
+          "type": "final_answer",
+          "content": "Các chuyến SGN -> PQC ngày 2026-06-12 dưới 1.500.000 VND/vé phù hợp:\n- VietJet VJ331: 10:30-11:30. 950.000 VND/vé. còn 9 ghế. phí hành lý 150.000 VND.\n- Vietnam Airlines VN1825: 15:45-16:45. 1.450.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.\n\nThời tiết Phu Quoc ngày 2026-06-12: heavy rain, nhiệt độ 25-30°C, xác suất mưa 80%.\n\nHoạt động phù hợp tại Phu Quoc:\n- Pearl Farm Visit (indoor): 50.000 VND. khoảng 2.0 giờ.\n\nDi chuyển từ Phu Quoc International Airport về trung tâm bằng taxi: 180.000 VND. khoảng 25 phút.\n\nTổng chi phí cơ bản: 3.630.000 VND (vé 2.850.000. hành lý 450.000. khách sạn 0. di chuyển 180.000. hoạt động 150.000)."
+        }
+      ]
+    }
+  ]
+}

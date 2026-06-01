@@ -339,8 +339,10 @@ def recommend_activities(
     ]
 
     matching = []
+    excluded_by_price = []
     for activity in activities:
         if max_price_int is not None and activity["price"] > max_price_int:
+            excluded_by_price.append(activity)
             continue
         if type_norm and _normalize(activity.get("type")) != type_norm:
             continue
@@ -358,6 +360,10 @@ def recommend_activities(
             "max_price": max_price_int,
             "activity_type": activity_type,
             "results": matching,
+            "excluded_by_price": sorted(
+                excluded_by_price,
+                key=lambda item: item["price"],
+            ),
         }
 
     return {

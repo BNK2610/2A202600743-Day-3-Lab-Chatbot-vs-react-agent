@@ -2,22 +2,10 @@ import argparse
 from typing import Any, Dict
 
 from src.core.llm_provider import LLMProvider
+from src.core.prompts import CHATBOT_BASELINE_SYSTEM_PROMPT
 from src.core.provider_factory import create_llm_provider
 from src.telemetry.logger import logger
 from src.telemetry.metrics import tracker
-
-
-BASELINE_SYSTEM_PROMPT = """
-You are the chatbot baseline for Lab 3.
-
-Answer the user's travel planning question directly without calling tools, databases,
-CSV files, search, or APIs. Be concise and helpful.
-
-Important:
-- This baseline is intentionally not grounded in the mock data.
-- If exact trip, weather, hotel, or price data is required, state uncertainty instead
-  of pretending you checked a real source.
-""".strip()
 
 
 class ChatbotBaseline:
@@ -35,7 +23,7 @@ class ChatbotBaseline:
             {"input": user_input, "model": self.llm.model_name},
         )
 
-        result = self.llm.generate(user_input, system_prompt=BASELINE_SYSTEM_PROMPT)
+        result = self.llm.generate(user_input, system_prompt=CHATBOT_BASELINE_SYSTEM_PROMPT)
         self.last_result = result
 
         tracker.track_request(
@@ -75,4 +63,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

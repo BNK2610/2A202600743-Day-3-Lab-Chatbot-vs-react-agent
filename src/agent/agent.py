@@ -4,6 +4,7 @@ import re
 from typing import Any, Dict, List, Optional, Tuple
 
 from src.core.llm_provider import LLMProvider
+from src.core.prompts import build_react_agent_system_prompt
 from src.telemetry.logger import logger
 from src.telemetry.metrics import tracker
 
@@ -34,37 +35,7 @@ class ReActAgent:
                 f"- {tool['name']}({args}): {tool['description']}"
             )
 
-        return f"""
-You are Vietnam Trip Planner Agent, a ReAct travel assistant.
-
-Your job:
-- Break the user request into small steps.
-- Use tools when you need trip, weather, hotel, activity, transport, or cost data.
-- Use only observations returned by tools for factual trip/weather/hotel/price data.
-- If required information is missing, ask a concise clarification question.
-- If a tool returns no data, say that the data is unavailable instead of inventing it.
-- Stop once you have enough evidence to answer.
-
-Available tools:
-{chr(10).join(tool_descriptions)}
-
-Output format:
-Use exactly one of these formats per turn.
-
-Thought: short reason for the next step.
-Action: {{"tool": "tool_name", "args": {{"arg_name": "value"}}}}
-
-or
-
-Thought: short reason why you can answer.
-Final Answer: final response to the user.
-
-Rules:
-- Do not produce Observation yourself. The program will add Observation after tool execution.
-- Do not wrap Action JSON in markdown fences.
-- Do not call a tool that is not listed.
-- Dates must use YYYY-MM-DD when calling tools.
-""".strip()
+        return build_react_agent_system_prompt(chr(10).join(tool_descriptions))
 
     def run(self, user_input: str) -> str:
         logger.log_event(

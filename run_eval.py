@@ -175,13 +175,17 @@ def run_evaluation(args: argparse.Namespace) -> Path:
         return Path("")
 
     from chatbot import ChatbotBaseline
-    from src.agent.agent import ReActAgent
     from src.core.provider_factory import create_llm_provider
     from src.tools.travel_tools import get_travel_tools
 
+    if args.agent_version == "v2":
+        from src.agent.agent_v2 import ReActAgentV2 as AgentClass
+    else:
+        from src.agent.agent_v1 import ReActAgentV1 as AgentClass
+
     llm = create_llm_provider(provider_name=args.provider, model_name=args.model)
     chatbot = ChatbotBaseline(llm)
-    agent = ReActAgent(llm=llm, tools=get_travel_tools(), max_steps=args.max_steps)
+    agent = AgentClass(llm=llm, tools=get_travel_tools(), max_steps=args.max_steps)
 
     rows: List[Dict[str, Any]] = []
 
@@ -228,6 +232,7 @@ def run_evaluation(args: argparse.Namespace) -> Path:
                 "user_query": query,
                 "required_tools": truth.get("required_tools", ""),
                 "expected_error_code": truth.get("expected_error_code", ""),
+                "agent_version": args.agent_version,
                 "chatbot_verdict": chatbot_score["verdict"],
                 "chatbot_score_notes": chatbot_score["reasons"],
                 "chatbot_latency_ms": chatbot_latency_ms,
@@ -245,7 +250,9 @@ def run_evaluation(args: argparse.Namespace) -> Path:
 
     output_dir = Path(args.output_dir) if args.output_dir else DEFAULT_OUTPUT_DIR
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / f"eval_results_{time.strftime('%Y%m%d_%H%M%S')}.csv"
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
+    output_path = output_dir / f"eval_results_{timestamp}.csv"
+    json_output_path = output_dir / f"eval_results_{timestamp}.json"
 
     fieldnames = list(rows[0].keys()) if rows else []
     with output_path.open("w", encoding="utf-8", newline="") as f:
@@ -253,7 +260,30 @@ def run_evaluation(args: argparse.Namespace) -> Path:
         writer.writeheader()
         writer.writerows(rows)
 
+    json_rows = []
+    for row in rows:
+        json_row = dict(row)
+        trace_json = json_row.pop("agent_trace_json", "[]")
+        try:
+            json_row["agent_trace"] = json.loads(trace_json)
+        except json.JSONDecodeError:
+            json_row["agent_trace"] = []
+        json_rows.append(json_row)
+
+    with json_output_path.open("w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "scenario_count": len(json_rows),
+                "results": json_rows,
+            },
+            f,
+            ensure_ascii=False,
+            indent=2,
+        )
+
     print(f"Saved evaluation results to: {output_path}")
+    print(f"Saved readable JSON results to: {json_output_path}")
     return output_path
 
 
@@ -266,6 +296,12 @@ def main() -> None:
     parser.add_argument("--ids", help="Comma-separated scenario IDs, e.g. T01,T03,T21.")
     parser.add_argument("--limit", type=int, help="Limit number of scenarios.")
     parser.add_argument("--max-steps", type=int, default=6, help="Agent max ReAct steps.")
+    parser.add_argument(
+        "--agent-version",
+        choices=["v1", "v2"],
+        default="v1",
+        help="Choose which agent implementation to evaluate.",
+    )
     parser.add_argument("--agent-only", action="store_true", help="Skip chatbot baseline.")
     parser.add_argument("--chatbot-only", action="store_true", help="Skip ReAct agent.")
     parser.add_argument("--dry-run", action="store_true", help="Print scenarios without calling LLM.")

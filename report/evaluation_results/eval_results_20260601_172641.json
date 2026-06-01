@@ -1,0 +1,276 @@
+{
+  "generated_at": "2026-06-01 17:26:41",
+  "scenario_count": 3,
+  "results": [
+    {
+      "id": "T01",
+      "type": "simple_trip",
+      "difficulty": "easy",
+      "user_query": "Tìm chuyến HAN -> SGN ngày 2026-06-10 dưới 2 triệu.",
+      "required_tools": "search_trips",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ121; missing expected flight code VN207; missing expected number 1750000; missing expected number 1950000",
+      "chatbot_latency_ms": 8011,
+      "chatbot_answer": "Tôi không thể tra cứu trực tiếp giá vé chuyến bay vì đây là chế độ không có dữ liệu đặt vé. Để tìm chuyến HAN → SGN ngày 10/06/2026 dưới 2 triệu, bạn cần kiểm tra trên web hoặc app của các hãng (VietJet, Bamboo Airways, Vietnam Airlines…) hoặc trang so sánh giá. Thông thường giá vé nội địa có thể thay đổi theo thời điểm đặt, ngày lễ và chính sách hãng. Bạn nên đặt sớm để có mức giá phù hợp. Tôi có thể hỗ trợ các thông tin khác như gợi ý lịch trình, thời tiết tham khảo (nếu cần) nhưng không thể cung cấp giá vé cụ thể.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 3914,
+      "agent_loop_count": 1,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Các chuyến HAN -> SGN ngày 2026-06-10 phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "max_price": 2000000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "passengers": 1,
+            "max_price": 2000000,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH203",
+                "departure_time": "15:00",
+                "arrival_time": "17:10",
+                "price": 2150000,
+                "seats_left": 8,
+                "baggage_fee": 120000
+              }
+            ]
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Các chuyến HAN -> SGN ngày 2026-06-10 phù hợp:\n- VietJet VJ121: 06:10-08:20. 1.750.000 VND/vé. còn 5 ghế. phí hành lý 180.000 VND.\n- Vietnam Airlines VN207: 08:20-10:30. 1.950.000 VND/vé. còn 3 ghế. phí hành lý 0 VND."
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "type": "no_budget_match",
+      "difficulty": "edge",
+      "user_query": "Tìm chuyến HAN -> SGN ngày 2026-06-10 dưới 1 triệu.",
+      "required_tools": "search_trips",
+      "expected_error_code": "NO_MATCHING_TRIP",
+      "agent_version": "v2",
+      "chatbot_verdict": "pass",
+      "chatbot_score_notes": "missing expected flight code VJ121; missing expected number 1000000",
+      "chatbot_latency_ms": 5166,
+      "chatbot_answer": "Hiện tại tôi không có dữ liệu thời gian thực về giá vé hay lịch bay cụ thể. Để biết chuyến bay HAN → SGN ngày 10/06/2026 dưới 1 triệu đồng, bạn vui lòng kiểm tra trên website hoặc ứng dụng của các hãng hàng không (Vietnam Airlines, Vietjet, Bamboo Airways, Vietravel Airlines…) hoặc các trang đặt vé trực tuyến. Thông tin này thay đổi theo từng thời điểm và chính sách giá, nên cần được tra cứu trực tiếp tại nguồn dữ liệu mới nhất.",
+      "agent_verdict": "pass",
+      "agent_score_notes": "missing expected number 1000000",
+      "agent_latency_ms": 6653,
+      "agent_loop_count": 1,
+      "agent_error_code": "NO_MATCHING_TRIP",
+      "agent_tools_called": "search_trips",
+      "agent_answer": "Không có chuyến HAN -> SGN ngày 2026-06-10 phù hợp ngân sách. Chuyến rẻ nhất hiện có là VietJet VJ121 giá 1.750.000 VND.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "llm_action",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "max_price": 1000000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "NO_MATCHING_TRIP",
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "passengers": 1,
+            "max_price": 1000000,
+            "results": [],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH203",
+                "departure_time": "15:00",
+                "arrival_time": "17:10",
+                "price": 2150000,
+                "seats_left": 8,
+                "baggage_fee": 120000
+              }
+            ],
+            "message": "Trips exist for this route/date, but none match the budget."
+          }
+        },
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Không có chuyến HAN -> SGN ngày 2026-06-10 phù hợp ngân sách. Chuyến rẻ nhất hiện có là VietJet VJ121 giá 1.750.000 VND."
+        }
+      ]
+    },
+    {
+      "id": "T03",
+      "type": "multi_step_weather_outfit",
+      "difficulty": "hard",
+      "user_query": "Tôi muốn đi từ Hà Nội vào TP.HCM ngày 2026-06-10 cho 2 người dưới 2 triệu mỗi vé. Nếu trời mưa thì nên mang gì?",
+      "required_tools": "search_trips|get_weather|recommend_outfit",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "review",
+      "chatbot_score_notes": "missing expected flight code VJ121; missing expected flight code VN207; missing expected number 2000000",
+      "chatbot_latency_ms": 9070,
+      "chatbot_answer": "Chào bạn,\n\nVới yêu cầu vé máy bay từ Hà Nội đi TP.HCM ngày 10/06/2026, **mỗi vé dưới 2 triệu cho 2 người là khả thi** (các hãng giá rẻ thường có giá khoảng 1–2 triệu vào thời điểm tháng 6), nhưng tôi không có dữ liệu chính xác để xác nhận giá. Bạn nên kiểm tra trực tiếp trên website các hãng bay hoặc ứng dụng đặt vé.\n\nVề câu hỏi **“nếu trời mưa thì nên mang gì”**: Vào tháng 6, TP.HCM thường có mưa bất chợt vào chiều. Bạn nên mang theo:\n- Ô gấp nhỏ hoặc áo mưa.\n- Giày dép chống nước / sandal.\n- Túi chống nước hoặc bọc nilon bảo vệ điện thoại, máy ảnh.\n\nChuyến đi vui vẻ nhé!",
+      "agent_verdict": "review",
+      "agent_score_notes": "missing tools: search_trips; missing expected flight code VJ121; missing expected flight code VN207; missing expected number 2000000",
+      "agent_latency_ms": 14883,
+      "agent_loop_count": 2,
+      "agent_error_code": "",
+      "agent_tools_called": "get_weather|recommend_outfit",
+      "agent_answer": "Thời tiết Ho Chi Minh City ngày 2026-06-10: rainy, nhiệt độ 27-32°C, xác suất mưa 70%.\n\nGợi ý đồ mang theo: light breathable clothes, foldable umbrella, light raincoat, quick-dry shoes.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "get_weather",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10",
+            "temp_high_c": 32,
+            "temp_low_c": 27,
+            "rain_probability": 0.7,
+            "condition": "rainy"
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "source": "guardrail_action",
+          "tool": "recommend_outfit",
+          "args": {
+            "temp_high_c": 32,
+            "rain_probability": 0.7,
+            "condition": "rainy"
+          },
+          "observation": {
+            "status": "OK",
+            "temp_high_c": 32,
+            "rain_probability": 0.7,
+            "condition": "rainy",
+            "recommended_items": [
+              "light breathable clothes",
+              "foldable umbrella",
+              "light raincoat",
+              "quick-dry shoes"
+            ],
+            "summary": "light breathable clothes, foldable umbrella, light raincoat, quick-dry shoes"
+          }
+        },
+        {
+          "step": 2,
+          "type": "final_answer",
+          "content": "Thời tiết Ho Chi Minh City ngày 2026-06-10: rainy, nhiệt độ 27-32°C, xác suất mưa 70%.\n\nGợi ý đồ mang theo: light breathable clothes, foldable umbrella, light raincoat, quick-dry shoes."
+        }
+      ]
+    }
+  ]
+}
