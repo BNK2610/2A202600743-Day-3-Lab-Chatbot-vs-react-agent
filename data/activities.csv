@@ -1,0 +1,17 @@
+city,activity_name,type,price,suitable_condition,duration_hours
+Ho Chi Minh City,War Remnants Museum,indoor,40000,rainy,2
+Ho Chi Minh City,Independence Palace,indoor,65000,rainy,2
+Ho Chi Minh City,Nguyen Hue Walking Street,outdoor,0,sunny,1
+Ho Chi Minh City,Ben Thanh Market,indoor,0,cloudy,2
+Da Nang,My Khe Beach,outdoor,0,sunny,3
+Da Nang,Cham Museum,indoor,60000,rainy,2
+Da Nang,Han River Walk,outdoor,0,cloudy,1
+Da Nang,Ba Na Hills,outdoor,900000,sunny,6
+Nha Trang,Po Nagar Cham Towers,outdoor,30000,sunny,2
+Nha Trang,Oceanographic Museum,indoor,40000,rainy,2
+Nha Trang,Nha Trang Beach,outdoor,0,sunny,3
+Phu Quoc,Pearl Farm Visit,indoor,50000,rainy,2
+Phu Quoc,Long Beach,outdoor,0,sunny,3
+Phu Quoc,Phu Quoc Night Market,outdoor,0,cloudy,2
+Hanoi,Vietnam Museum of Ethnology,indoor,40000,rainy,2
+Hanoi,Hoan Kiem Lake Walk,outdoor,0,sunny,1

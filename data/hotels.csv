@@ -1,0 +1,13 @@
+city,hotel_name,stars,price_per_night,available_rooms,near_center,breakfast_included
+Ho Chi Minh City,Saigon Budget Inn,3,650000,4,true,false
+Ho Chi Minh City,Riverside Central Hotel,4,1200000,2,true,true
+Ho Chi Minh City,Ben Thanh Comfort Stay,3,850000,3,true,true
+Da Nang,Beach Light Hotel,3,700000,5,false,true
+Da Nang,Han River Boutique,4,1100000,2,true,true
+Da Nang,My Khe Budget Stay,2,450000,6,false,false
+Nha Trang,Sea Breeze Hotel,3,750000,4,false,true
+Nha Trang,Central Nha Trang Hotel,4,1300000,2,true,true
+Phu Quoc,Island Budget Resort,3,900000,1,false,true
+Phu Quoc,Sunset Beach Resort,4,1800000,3,false,true
+Hanoi,Old Quarter Stay,3,700000,5,true,false
+Hanoi,West Lake Hotel,4,1400000,2,false,true

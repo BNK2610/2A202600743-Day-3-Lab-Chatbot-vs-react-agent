@@ -1,0 +1,25 @@
+alias,code,city,airport_name
+hanoi,HAN,Hanoi,Noi Bai International Airport
+ha noi,HAN,Hanoi,Noi Bai International Airport
+hà nội,HAN,Hanoi,Noi Bai International Airport
+hn,HAN,Hanoi,Noi Bai International Airport
+noi bai,HAN,Hanoi,Noi Bai International Airport
+saigon,SGN,Ho Chi Minh City,Tan Son Nhat International Airport
+sai gon,SGN,Ho Chi Minh City,Tan Son Nhat International Airport
+sài gòn,SGN,Ho Chi Minh City,Tan Son Nhat International Airport
+tp hcm,SGN,Ho Chi Minh City,Tan Son Nhat International Airport
+tp.hcm,SGN,Ho Chi Minh City,Tan Son Nhat International Airport
+ho chi minh,SGN,Ho Chi Minh City,Tan Son Nhat International Airport
+hcm,SGN,Ho Chi Minh City,Tan Son Nhat International Airport
+danang,DAD,Da Nang,Da Nang International Airport
+da nang,DAD,Da Nang,Da Nang International Airport
+đà nẵng,DAD,Da Nang,Da Nang International Airport
+dn,DAD,Da Nang,Da Nang International Airport
+nha trang,CXR,Nha Trang,Cam Ranh International Airport
+cam ranh,CXR,Nha Trang,Cam Ranh International Airport
+cxr,CXR,Nha Trang,Cam Ranh International Airport
+phu quoc,PQC,Phu Quoc,Phu Quoc International Airport
+phú quốc,PQC,Phu Quoc,Phu Quoc International Airport
+pqc,PQC,Phu Quoc,Phu Quoc International Airport
+hue,HUI,Hue,Phu Bai International Airport
+huế,HUI,Hue,Phu Bai International Airport

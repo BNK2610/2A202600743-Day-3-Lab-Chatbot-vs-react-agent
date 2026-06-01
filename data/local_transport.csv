@@ -1,0 +1,16 @@
+city,from_airport,transport_type,cost,duration_minutes
+Ho Chi Minh City,Tan Son Nhat International Airport,bus,7000,60
+Ho Chi Minh City,Tan Son Nhat International Airport,taxi,180000,35
+Ho Chi Minh City,Tan Son Nhat International Airport,ride_hailing,150000,40
+Da Nang,Da Nang International Airport,bus,10000,45
+Da Nang,Da Nang International Airport,taxi,120000,25
+Da Nang,Da Nang International Airport,ride_hailing,100000,30
+Nha Trang,Cam Ranh International Airport,bus,65000,70
+Nha Trang,Cam Ranh International Airport,taxi,350000,50
+Nha Trang,Cam Ranh International Airport,ride_hailing,300000,55
+Phu Quoc,Phu Quoc International Airport,bus,20000,50
+Phu Quoc,Phu Quoc International Airport,taxi,180000,25
+Phu Quoc,Phu Quoc International Airport,ride_hailing,150000,30
+Hanoi,Noi Bai International Airport,bus,45000,60
+Hanoi,Noi Bai International Airport,taxi,280000,40
+Hanoi,Noi Bai International Airport,ride_hailing,240000,45

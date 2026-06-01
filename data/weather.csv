@@ -1,0 +1,13 @@
+city,date,temp_high_c,temp_low_c,rain_probability,condition
+Ho Chi Minh City,2026-06-10,32,27,0.70,rainy
+Ho Chi Minh City,2026-06-11,33,27,0.55,scattered rain
+Ho Chi Minh City,2026-06-13,31,26,0.40,cloudy
+Da Nang,2026-06-10,34,28,0.30,sunny
+Da Nang,2026-06-11,35,28,0.20,sunny
+Da Nang,2026-06-12,33,27,0.60,rainy
+Nha Trang,2026-06-11,31,26,0.45,cloudy
+Nha Trang,2026-06-13,32,26,0.25,sunny
+Phu Quoc,2026-06-12,30,25,0.80,heavy rain
+Phu Quoc,2026-06-13,31,25,0.65,rainy
+Hanoi,2026-06-10,36,29,0.35,hot
+Hanoi,2026-06-11,35,28,0.50,cloudy
