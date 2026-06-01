@@ -1,6 +1,7 @@
 import csv
 from functools import lru_cache
 from pathlib import Path
+import re
 from typing import Any, Callable, Dict, List, Optional
 import unicodedata
 
@@ -11,7 +12,9 @@ DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 def _normalize(value: Any) -> str:
     text = str(value or "").strip().lower()
     text = unicodedata.normalize("NFKD", text)
-    return "".join(ch for ch in text if not unicodedata.combining(ch))
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    text = text.replace("đ", "d")
+    return re.sub(r"[^a-z0-9]+", "", text)
 
 
 def _to_int(value: Any, default: Optional[int] = None) -> Optional[int]:

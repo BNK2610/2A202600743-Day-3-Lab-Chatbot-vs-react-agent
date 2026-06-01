@@ -116,6 +116,5 @@ Tìm chuyến HAN -> SGN ngày 2026-06-10 dưới 1 triệu.
 Trong data không có chuyến nào thỏa điều kiện. Agent v1 có thể bị lỗi nếu vẫn trả lời như có vé 900.000 VND. Agent v2 cần sửa để:
 
 - Báo không có chuyến phù hợp.
-- Không bịa dữ liệu.
 - Có thể gợi ý tăng ngân sách hoặc chọn chuyến rẻ nhất hiện có là `VJ121` giá `1750000`.
 

@@ -1,0 +1,398 @@
+{
+  "generated_at": "2026-06-01 22:02:46",
+  "scenario_count": 4,
+  "results": [
+    {
+      "id": "T03",
+      "type": "multi_step_weather_outfit",
+      "difficulty": "hard",
+      "user_query": "Tôi muốn đi từ Hà Nội vào TP.HCM ngày 2026-06-10 cho 2 người dưới 2 triệu mỗi vé. Nếu trời mưa thì nên mang gì?",
+      "required_tools": "search_trips|get_weather|recommend_outfit",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "skipped",
+      "chatbot_score_notes": "",
+      "chatbot_latency_ms": 0,
+      "chatbot_answer": "",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 40792,
+      "agent_loop_count": 6,
+      "agent_error_code": "",
+      "agent_tools_called": "resolve_city|resolve_city|search_trips|get_weather|recommend_outfit",
+      "agent_answer": "Dưới đây là các chuyến bay từ Hà Nội (HAN) đến TP.HCM (SGN) ngày 2026-06-10 với giá dưới 2.000.000 VND/vé, còn đủ chỗ cho 2 người:\n\n1. **VietJet VJ121** – khởi hành 06:10–08:20, giá **1.750.000 VND/vé**, phí hành lý 180.000 VND, còn 5 ghế.\n2. **Vietnam Airlines VN207** – khởi hành 08:20–10:30, giá **1.950.000 VND/vé**, miễn phí hành lý ký gửi, còn 3 ghế.\n\nVì TP.HCM ngày 10/6 dự báo **trời mưa** (nhiệt độ 27–32°C, xác suất mưa 70%), bạn nên mang:\n\n- Quần áo nhẹ, thoáng mát (vải thấm hút tốt)\n- Ô gấp (dù) chống mưa\n- Áo mưa nhẹ\n- Giày dép khô nhanh (hoặc sandal chống nước)\n\nBạn muốn đặt vé chuyến nào? Nếu cần thêm thông tin về khách sạn, di chuyển nội thành hoặc ước tính tổng chi phí, hãy cho tôi biết.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "tool": "resolve_city",
+          "args": {
+            "city_or_code": "Hà Nội"
+          },
+          "observation": {
+            "status": "OK",
+            "input": "Hà Nội",
+            "code": "HAN",
+            "city": "Hanoi",
+            "airport_name": "Noi Bai International Airport"
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "tool": "resolve_city",
+          "args": {
+            "city_or_code": "TP.HCM"
+          },
+          "observation": {
+            "status": "OK",
+            "input": "TP.HCM",
+            "code": "SGN",
+            "city": "Ho Chi Minh City",
+            "airport_name": "Tan Son Nhat International Airport"
+          }
+        },
+        {
+          "step": 3,
+          "type": "tool_call",
+          "tool": "search_trips",
+          "args": {
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "max_price": 2000000,
+            "passengers": 2
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "SGN",
+            "date": "2026-06-10",
+            "passengers": 2,
+            "max_price": 2000000,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ121",
+                "departure_time": "06:10",
+                "arrival_time": "08:20",
+                "price": 1750000,
+                "seats_left": 5,
+                "baggage_fee": 180000
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN207",
+                "departure_time": "08:20",
+                "arrival_time": "10:30",
+                "price": 1950000,
+                "seats_left": 3,
+                "baggage_fee": 0
+              },
+              {
+                "origin": "HAN",
+                "destination": "SGN",
+                "date": "2026-06-10",
+                "provider": "Bamboo Airways",
+                "flight_no": "QH203",
+                "departure_time": "15:00",
+                "arrival_time": "17:10",
+                "price": 2150000,
+                "seats_left": 8,
+                "baggage_fee": 120000
+              }
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "type": "tool_call",
+          "tool": "get_weather",
+          "args": {
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10"
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Ho Chi Minh City",
+            "date": "2026-06-10",
+            "temp_high_c": 32,
+            "temp_low_c": 27,
+            "rain_probability": 0.7,
+            "condition": "rainy"
+          }
+        },
+        {
+          "step": 5,
+          "type": "tool_call",
+          "tool": "recommend_outfit",
+          "args": {
+            "temp_high_c": 32,
+            "rain_probability": 0.7,
+            "condition": "rainy"
+          },
+          "observation": {
+            "status": "OK",
+            "temp_high_c": 32,
+            "rain_probability": 0.7,
+            "condition": "rainy",
+            "recommended_items": [
+              "light breathable clothes",
+              "foldable umbrella",
+              "light raincoat",
+              "quick-dry shoes"
+            ],
+            "summary": "light breathable clothes, foldable umbrella, light raincoat, quick-dry shoes"
+          }
+        },
+        {
+          "step": 6,
+          "type": "final_answer",
+          "content": "Dưới đây là các chuyến bay từ Hà Nội (HAN) đến TP.HCM (SGN) ngày 2026-06-10 với giá dưới 2.000.000 VND/vé, còn đủ chỗ cho 2 người:\n\n1. **VietJet VJ121** – khởi hành 06:10–08:20, giá **1.750.000 VND/vé**, phí hành lý 180.000 VND, còn 5 ghế.\n2. **Vietnam Airlines VN207** – khởi hành 08:20–10:30, giá **1.950.000 VND/vé**, miễn phí hành lý ký gửi, còn 3 ghế.\n\nVì TP.HCM ngày 10/6 dự báo **trời mưa** (nhiệt độ 27–32°C, xác suất mưa 70%), bạn nên mang:\n\n- Quần áo nhẹ, thoáng mát (vải thấm hút tốt)\n- Ô gấp (dù) chống mưa\n- Áo mưa nhẹ\n- Giày dép khô nhanh (hoặc sandal chống nước)\n\nBạn muốn đặt vé chuyến nào? Nếu cần thêm thông tin về khách sạn, di chuyển nội thành hoặc ước tính tổng chi phí, hãy cho tôi biết."
+        }
+      ]
+    },
+    {
+      "id": "T09",
+      "type": "hotel_plan",
+      "difficulty": "medium",
+      "user_query": "Tôi đi từ Hà Nội đến Đà Nẵng ngày 2026-06-10. Tìm chuyến dưới 1.5 triệu và khách sạn dưới 800 nghìn một đêm.",
+      "required_tools": "search_trips|search_hotels",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "skipped",
+      "chatbot_score_notes": "",
+      "chatbot_latency_ms": 0,
+      "chatbot_answer": "",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 19604,
+      "agent_loop_count": 3,
+      "agent_error_code": "",
+      "agent_tools_called": "search_trips|search_hotels",
+      "agent_answer": "📅 Ngày 2026-06-10 từ Hà Nội → Đà Nẵng:\n\n**Chuyến bay** (dưới 1.500.000 VND):  \n- VietJet VJ501: HAN 07:30 → DAD 08:50, giá **1.200.000 VND**, phí hành lý 150.000 VND, còn 10 chỗ.\n\n**Khách sạn** (dưới 800.000 VND/đêm tại Đà Nẵng):  \n1. 🏨 My Khe Budget Stay (2 sao) – **450.000 VND/đêm**, không gần trung tâm, không bữa sáng.  \n2. 🏨 Beach Light Hotel (3 sao) – **700.000 VND/đêm**, không gần trung tâm, bao gồm bữa sáng.\n\nNếu cần ước tính tổng chi phí theo số đêm hoặc đặt phòng, bạn vui lòng cho biết số đêm mong muốn (mặc định tôi sẽ dùng 1 đêm để tính).",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "tool": "search_trips",
+          "args": {
+            "origin": "Hà Nội",
+            "destination": "Đà Nẵng",
+            "date": "2026-06-10",
+            "max_price": 1500000,
+            "passengers": 1
+          },
+          "observation": {
+            "status": "OK",
+            "origin": "HAN",
+            "destination": "DAD",
+            "date": "2026-06-10",
+            "passengers": 1,
+            "max_price": 1500000,
+            "results": [
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ501",
+                "departure_time": "07:30",
+                "arrival_time": "08:50",
+                "price": 1200000,
+                "seats_left": 10,
+                "baggage_fee": 150000
+              }
+            ],
+            "all_route_options": [
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "VietJet",
+                "flight_no": "VJ501",
+                "departure_time": "07:30",
+                "arrival_time": "08:50",
+                "price": 1200000,
+                "seats_left": 10,
+                "baggage_fee": 150000
+              },
+              {
+                "origin": "HAN",
+                "destination": "DAD",
+                "date": "2026-06-10",
+                "provider": "Vietnam Airlines",
+                "flight_no": "VN161",
+                "departure_time": "11:00",
+                "arrival_time": "12:20",
+                "price": 1550000,
+                "seats_left": 4,
+                "baggage_fee": 0
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "tool": "search_hotels",
+          "args": {
+            "city": "Đà Nẵng",
+            "max_price_per_night": 800000,
+            "rooms": 1
+          },
+          "observation": {
+            "status": "OK",
+            "city": "Da Nang",
+            "max_price_per_night": 800000,
+            "rooms": 1,
+            "results": [
+              {
+                "city": "Da Nang",
+                "hotel_name": "My Khe Budget Stay",
+                "stars": 2,
+                "price_per_night": 450000,
+                "available_rooms": 6,
+                "near_center": false,
+                "breakfast_included": false
+              },
+              {
+                "city": "Da Nang",
+                "hotel_name": "Beach Light Hotel",
+                "stars": 3,
+                "price_per_night": 700000,
+                "available_rooms": 5,
+                "near_center": false,
+                "breakfast_included": true
+              }
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "type": "final_answer",
+          "content": "📅 Ngày 2026-06-10 từ Hà Nội → Đà Nẵng:\n\n**Chuyến bay** (dưới 1.500.000 VND):  \n- VietJet VJ501: HAN 07:30 → DAD 08:50, giá **1.200.000 VND**, phí hành lý 150.000 VND, còn 10 chỗ.\n\n**Khách sạn** (dưới 800.000 VND/đêm tại Đà Nẵng):  \n1. 🏨 My Khe Budget Stay (2 sao) – **450.000 VND/đêm**, không gần trung tâm, không bữa sáng.  \n2. 🏨 Beach Light Hotel (3 sao) – **700.000 VND/đêm**, không gần trung tâm, bao gồm bữa sáng.\n\nNếu cần ước tính tổng chi phí theo số đêm hoặc đặt phòng, bạn vui lòng cho biết số đêm mong muốn (mặc định tôi sẽ dùng 1 đêm để tính)."
+        }
+      ]
+    },
+    {
+      "id": "T11",
+      "type": "missing_required_info",
+      "difficulty": "edge",
+      "user_query": "Tôi muốn đi từ Hà Nội vào TP.HCM cho 2 người, tìm vé rẻ và xem có mưa không.",
+      "required_tools": "none",
+      "expected_error_code": "MISSING_REQUIRED_INFO",
+      "agent_version": "v2",
+      "chatbot_verdict": "skipped",
+      "chatbot_score_notes": "",
+      "chatbot_latency_ms": 0,
+      "chatbot_answer": "",
+      "agent_verdict": "pass",
+      "agent_score_notes": "basic checks passed",
+      "agent_latency_ms": 4280,
+      "agent_loop_count": 1,
+      "agent_error_code": "MISSING_REQUIRED_INFO",
+      "agent_tools_called": "",
+      "agent_answer": "Bạn muốn khởi hành vào ngày nào? (định dạng YYYY-MM-DD)",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "final_answer",
+          "content": "Bạn muốn khởi hành vào ngày nào? (định dạng YYYY-MM-DD)"
+        }
+      ]
+    },
+    {
+      "id": "T21",
+      "type": "multi_tool_full_plan",
+      "difficulty": "hard",
+      "user_query": "Tôi muốn đi từ Hà Nội vào TP.HCM ngày 2026-06-10 cho 2 người, vé dưới 2 triệu mỗi người, khách sạn dưới 1 triệu một đêm, nếu trời mưa thì gợi ý hoạt động phù hợp, tính taxi từ sân bay về trung tâm và tính tổng chi phí cơ bản.",
+      "required_tools": "search_trips|get_weather|search_hotels|recommend_activities|estimate_local_transport|calculate_total_cost",
+      "expected_error_code": "",
+      "agent_version": "v2",
+      "chatbot_verdict": "skipped",
+      "chatbot_score_notes": "",
+      "chatbot_latency_ms": 0,
+      "chatbot_answer": "",
+      "agent_verdict": "review",
+      "agent_score_notes": "missing tools: get_weather, search_hotels, recommend_activities, estimate_local_transport, calculate_total_cost; missing expected flight code VJ121; missing expected flight code VN207; missing expected number 2000000; missing expected number 1750000",
+      "agent_latency_ms": 31177,
+      "agent_loop_count": 3,
+      "agent_error_code": "UNKNOWN_CITY",
+      "agent_tools_called": "search_trips|resolve_city",
+      "agent_answer": "Vui lòng xác nhận điểm đến là \"Hồ Chí Minh\" (hoặc mã sân bay \"SGN\")? Tôi không nhận diện được \"TP.HCM\" trong dữ liệu.",
+      "agent_trace": [
+        {
+          "step": 1,
+          "type": "tool_call",
+          "tool": "search_trips",
+          "args": {
+            "origin": "Hà Nội",
+            "destination": "TP. HCM",
+            "date": "2026-06-10",
+            "max_price": 2000000,
+            "passengers": 2
+          },
+          "observation": {
+            "status": "NO_ROUTE",
+            "origin": "HAN",
+            "destination": "TP. HCM",
+            "date": "2026-06-10",
+            "results": [],
+            "message": "No trips found for this route/date."
+          }
+        },
+        {
+          "step": 2,
+          "type": "tool_call",
+          "tool": "resolve_city",
+          "args": {
+            "city_or_code": "TP. HCM"
+          },
+          "observation": {
+            "status": "UNKNOWN_CITY",
+            "input": "TP. HCM",
+            "message": "Could not resolve city or airport code: TP. HCM"
+          }
+        },
+        {
+          "step": 3,
+          "type": "final_answer",
+          "content": "Vui lòng xác nhận điểm đến là \"Hồ Chí Minh\" (hoặc mã sân bay \"SGN\")? Tôi không nhận diện được \"TP.HCM\" trong dữ liệu."
+        }
+      ]
+    }
+  ]
+}

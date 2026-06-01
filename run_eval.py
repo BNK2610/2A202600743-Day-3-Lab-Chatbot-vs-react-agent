@@ -295,7 +295,7 @@ def main() -> None:
     parser.add_argument("--model", help="Override DEFAULT_MODEL from .env.")
     parser.add_argument("--ids", help="Comma-separated scenario IDs, e.g. T01,T03,T21.")
     parser.add_argument("--limit", type=int, help="Limit number of scenarios.")
-    parser.add_argument("--max-steps", type=int, default=6, help="Agent max ReAct steps.")
+    parser.add_argument("--max-steps", type=int, default=8, help="Agent max ReAct steps.")
     parser.add_argument(
         "--agent-version",
         choices=["v1", "v2"],
